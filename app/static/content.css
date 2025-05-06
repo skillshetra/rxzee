@@ -1,0 +1,274 @@
+.cke_inner h1,
+#content h1 {
+    font-weight: 800;
+    font-size: 2em;
+    line-height: 1;
+    margin: 2em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner h2,
+#content h2 {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    margin: 1.5em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner h3,
+#content h3 {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1;
+    margin: 1.2em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner h4,
+#content h4 {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1;
+    margin: 1em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner h5,
+#content h5 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    margin: 0.5em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner h6,
+#content h6 {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1;
+    margin: 0.5em 0;
+    letter-spacing: 1px;
+}
+
+.cke_inner p,
+#content p {
+    font-weight: 400;
+    font-size: 18px;
+    color: #333333;
+    line-height: 2;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.5rem;
+}
+
+.cke_inner blockquote,
+#content blockquote {
+    font-weight: 400;
+    font-size: 18px;
+    color: #008080;
+    font-style: italic;
+    margin: 1em 0;
+    padding-left: 1em;
+    border-left: 3px solid #008080;
+}
+
+.cke_inner ul,
+#content ul {
+    margin: 2em 0;
+    padding-left: 1.5em;
+}
+
+.cke_inner ul li,
+#content ul li {
+    font-weight: 400;
+    font-size: 18px;
+    color: #333333;
+    letter-spacing: 0.8px;
+    padding-left: 20px;
+}
+
+.cke_inner ul li::marker,
+#content ul li::marker {
+    color: #A3CCD9;
+    font-size: 22px;
+    text-indent: 2px;
+}
+
+.cke_inner ol li,
+#content ol li {
+    font-weight: 400;
+    font-size: 18px;
+    color: #333333;
+    line-height: 2.2;
+    margin-bottom: -1em;
+    letter-spacing: 0.8px;
+    padding-left: 20px;
+}
+
+.cke_inner ol,
+#content ol {
+    margin: 1.5em 0;
+    padding-left: 1.5em;
+}
+
+.cke_inner ol li::marker,
+#content ol li::marker {
+    display: inline-block;
+    color: #A3CCD9;
+    font-weight: 500;
+    font-size: 22px;
+    text-indent: 2px;
+    margin-right: 10px;
+}
+
+.cke_inner a,
+#content a {
+    color: #0095FD;
+}
+
+.cke_inner a:hover,
+#content a:hover {
+    text-decoration: underline;
+}
+
+
+.extenal-link {
+    color: #00FDE7;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+
+    .cke_inner h1,
+    #content h1 {
+        font-size: 1.8em;
+    }
+
+    .cke_inner h2,
+    #content h2 {
+        font-size: 28px;
+    }
+
+    .cke_inner h3,
+    #content h3 {
+        font-size: 26px;
+    }
+
+    .cke_inner h4,
+    #content h4 {
+        font-size: 24px;
+    }
+
+    .cke_inner h5,
+    #content h5 {
+        font-size: 22px;
+    }
+
+    .cke_inner h6,
+    #content h6 {
+        font-size: 20px;
+    }
+
+    .cke_inner p,
+    #content p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .cke_inner h1,
+    #content h1 {
+        font-size: 1.6em;
+    }
+
+    .cke_inner h2,
+    #content h2 {
+        font-size: 24px;
+    }
+
+    .cke_inner h3,
+    #content h3 {
+        font-size: 22px;
+    }
+
+    .cke_inner h4,
+    #content h4 {
+        font-size: 20px;
+    }
+
+    .cke_inner h5,
+    #content h5 {
+        font-size: 18px;
+    }
+
+    .cke_inner h6,
+    #content h6 {
+        font-size: 18px;
+    }
+
+    .cke_inner p,
+    #content p {
+        letter-spacing: 0.6px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .cke_inner h1,
+    #content h1 {
+        font-size: 1.4em;
+    }
+
+    .cke_inner h2,
+    #content h2 {
+        font-size: 22px;
+    }
+
+    .cke_inner h3,
+    #content h3 {
+        font-size: 20px;
+    }
+
+    .cke_inner h4,
+    #content h4 {
+        font-size: 18px;
+    }
+
+    .cke_inner h5,
+    #content h5 {
+        font-size: 16px;
+    }
+
+    .cke_inner h6,
+    #content h6 {
+        font-size: 16px;
+    }
+
+    .cke_inner p,
+    #content p {
+        letter-spacing: 0.5px;
+        font-size: 14px;
+    }
+}
+
+.pill:hover span.half {
+    display: none !important
+}
+
+.pill:hover span.full {
+    display: inline !important
+}
+
+.errorlist {
+    color: #ff0000;
+    padding: 5px;
+    font-weight: bold;
+    background: #ff000020;
+    border-radius: 5px;
+}
+.scroller::-webkit-scrollbar{
+    display: none;
+}
