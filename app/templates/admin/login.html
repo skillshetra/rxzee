@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">{% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Rx Zee</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'Futuru-Regular.ttf' %}" type="font/ttf">
+    <link rel="stylesheet" href="{% static 'rxzee.css' %}">
+</head>
+<body class="flex justify-center items-center w-dvw h-dvh text-gray-900 bg-gray-100 m-0 p-0" style='font-family: "Futuru", sans-serif;'>
+    <form method="post" class="flex h-fit w-60 sm:w-72 md:w-96 flex-col bg-gray-50 gap-5 px-4 py-10 shadow-md rounded-lg">
+        <h3 class="text-lg lg:text-xl xl:text-2xl text-emerald-600 font-bold">Login to Admin Panel</h3>
+        {% csrf_token %}
+        <div class="flex flex-col gap-1"><label for="username" class="font-bold">Username</label><input type="text" name="username" id="username" placeholder="Username" autofocus class="w-full border bg-white border-gray-300 p-2 outline-none transtion duration-300 focus:border-gray-700 rounded" /></div>
+        <div class="flex flex-col gap-1"><label for="password" class="font-bold">Password</label><input type="password" name="password" id="password" placeholder="Password" class="w-full border bg-white border-gray-300 p-2 outline-none transtion duration-300 focus:border-gray-700 rounded" /></div>
+        {% if error %}<p class="text-sm text-[#ff0000] font-bold p-2 bg-[#ff000020] rounded">{{ error }}</p>{% endif %}
+        <button class="w-fit border border-gray-900 text-gray-900 font-bold bg-[#A3CCD9] p-2 rounded hover:border-gray-700 hover:text-gray-700 transtion duration-300">Submit</button>
+        <input id="session_data" name="session_data" value="0.0.0.0" class="hidden" />
+    </form>
+</body>
+<script>document.addEventListener('DOMContentLoaded', async () => {try {document.querySelector("#session_data").value = await JSON.stringify(await (await fetch('https://api.rudrakumarmishra.com')).json());} catch{}});</script>
+</html>

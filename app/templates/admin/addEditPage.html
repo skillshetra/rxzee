@@ -1,0 +1,14 @@
+{% extends 'admin/components/index.html' %}
+{% block content %}
+<style>.errorlist {color: #ff0000; background: #ff000020; border-radius: 5px; margin: 5px; padding: 5px;} #sbakjbfkjbfkjsabkjgfjtg>div{display: flex; gap: 5px; flex-direction: column;} #sbakjbfkjbfkjsabkjgfjtg>div>label{font-weight: bold; white-space: nowrap;} @media screen and (min-width:750px) {#sbakjbfkjbfkjsabkjgfjtg>div:last-child{grid-column: span 2;}}</style>
+<form method="post" enctype="multipart/form-data" class="flex flex-col w-full bg-gray-100 gap-2 rounded text-gray-800 select-none">
+{% csrf_token %}
+{{ form.media }}
+<div class="flex justify-between items-center p-4 border-b border-gray-400 rounded">
+    <h3 class="sm:text-lg md:text-xl font-bold text-emerald-600 whitespace-nowrap">{{ title }}</h3>
+    <button type="submit" class="flex items-center font-bold border border-gray-500 hover:border-gray-900 transition duration-300 gap-2 px-4 py-1 rounded"><svg class="w-4 h-4" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>Save</button>
+</div>
+<div class="p-4">{% if error %}<p class="w-full text-[#ff0000] bg-red-200 p-2 rounded">{{ error }}</p>{% endif %}</div>
+<div id="sbakjbfkjbfkjsabkjgfjtg" class="grid md:grid-cols-2 gap-4 p-2">{{ form }}</div>
+</form>
+{% endblock %}

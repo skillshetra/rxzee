@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} - Rx Zee</title>
+<meta property="og:title" content="{{ title }} - RxZee" />
+<meta name="description" content="{{ metadata.og_description }}">
+<meta property="og:description" content="{{ metadata.og_description }}" />
+<meta property="og:image" content="{{ metadata.og_image }}" />
+<meta property="og:image:alt" content="" />
+<link rel="canonical" href="{{ metadata.og_url }}" />
+<link rel="shortcut icon" href="{% static 'favicon.svg' %}" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'RxZee.ttf' %}" type="font/ttf">
+<link rel="stylesheet" href="{% static 'rxzee.css' %}">
+<link rel="stylesheet" href="{% static 'content.css' %}">
+<style>#breadcrumbs>div:last-child span{display: none;} @media screen and (min-width:1000px) {#nav-dropdown:hover #nav-links-dropdown {transition: 0.5s ease; max-height: 500px}} #google_translate_element span, #container-scroll::-webkit-scrollbar {display: none;}@media screen and (max-width:1000px) { #navigation {max-height: 0px}} img {-webkit-user-select: none !important; -khtml-user-select: none !important; -moz-user-select: none !important; -o-user-select: none !important; user-select: none !important}</style>
+</head>
+<body class="text-gray-900 bg-gray-100 m-0 p-0" style='font-family: "RxZee", sans-serif;'>
+{% include 'components/header.html' %}
+<main>{% block content %} {% endblock %}</main>
+{% include 'components/footer.html' %}
+</body>
+{{ GoogleTagId|json_script:"GoogleTagId" }}
+<script type="text/javascript">function googleTranslateElementInit() {new google.translate.TranslateElement( {pageLanguage: 'en'}, 'google_translate_element')}</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GoogleTagId }}" id="GoogleAnalyticsScript" defer></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', document.querySelector("#GoogleTagId").innerText.trim());
+</script>
+<script>document.querySelector("#header-search").addEventListener("keyup", (event) => { document.querySelector("#header-search-result").innerHTML = ""; if (event.target.value !== "") { const combinedResults = [...JSON.parse(document.getElementById('search_drugs').textContent).map(item => ({ ...item, type: 'drugs' })), ...JSON.parse(document.getElementById('search_vitamins').textContent).map(item => ({ ...item, type: 'vitaminsandsupplements' })), ...JSON.parse(document.getElementById('search_pills').textContent).map(item => ({ ...item, type: 'pill' })), ...JSON.parse(document.getElementById('search_condition').textContent).map(item => ({ ...item, type: 'conditions' })), ...JSON.parse(document.getElementById('search_well_being').textContent).map(item => ({ ...item, type: 'wellbeing' })), ...JSON.parse(document.getElementById('search_news').textContent).map(item => ({ ...item, type: 'news' }))]; combinedResults.filter(result => (result.name && result.name.toLowerCase().includes(event.target.value.toLowerCase())) || (result.title && result.title.toLowerCase().includes(event.target.value.toLowerCase())) || (result.data && result.data.toString().toLowerCase().includes(event.target.value.toLowerCase()))).forEach(searchResultJSON => { const searchResult = document.createElement("a"); searchResult.href = (searchResultJSON.type === 'pill' ? `/${searchResultJSON.type}/${searchResultJSON.redirect_url_name}` : searchResultJSON.type === 'conditions' ? `/${searchResultJSON.type}/${searchResultJSON.data}` : `/${searchResultJSON.type}/${searchResultJSON.id}`); searchResult.className = "hover:bg-gray-200 p-2 transition duration-300"; searchResult.textContent = searchResultJSON.name || searchResultJSON.title || searchResultJSON.data; document.querySelector("#header-search-result").classList.remove("hidden"); document.querySelector("#header-search-result").appendChild(searchResult); }); } else { document.querySelector("#header-search-result").innerHTML = ""; }});</script>
+{{ GoogleTagId|json_script:"GoogleTagId" }}
+</html>

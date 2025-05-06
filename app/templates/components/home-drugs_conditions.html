@@ -1,0 +1,43 @@
+<div class="flex flex-col md:grid md:grid-cols-2 gap-20 lg:gap-10 xl:gap-20 cursor-pointer whitespace-nowrap">
+    <div class="hidden md:flex flex-col items-center gap-10">
+        <a href="/drugs" class="text-xl md:text-2xl font-bold w-fit bg-gray-100 hover:text-gray-200 hover:bg-gray-800 transistion duration-300 py-2 px-4 rounded">Search Drugs</a>
+        <div class="flex w-full flex-wrap gap-1">
+            <div class="flex w-full flex-wrap gap-1">
+                {% for text in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<a href="/drugs/alpha/{{ text }}" class="flex w-10 h-10 items-center justify-center border border-black rounded-full">{{ text }}</a>{% endfor %}
+                <a href="/drugs/alpha/0-9" class="flex w-20 h-10 items-center justify-center border border-black rounded-full" style="padding: 1rem;">0-9</a>
+            </div>
+            <p class="text-sm">Browse A-Z: Drug, Treatment, Condition or Class.</p>
+        </div>
+    </div>
+    <div class="hidden md:flex flex-col items-center  gap-10">
+        <a href="/conditions" class="text-xl md:text-2xl font-bold w-fit bg-gray-100 hover:text-gray-200 hover:bg-gray-800 transistion duration-300 py-2 px-4 rounded">Search Conditions</a>
+        <div class="flex w-full flex-wrap gap-1">
+            <div class="flex w-full flex-wrap gap-1">
+                {% for text in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<a href="/conditions/alpha/{{ text }}" class="flex w-10 h-10 items-center justify-center border border-black rounded-full">{{ text }}</a>{% endfor %}
+                <a href="/conditions/alpha/0-9" class="flex w-20 h-10 items-center justify-center border border-black rounded-full" style="padding: 1rem;">0-9</a>
+            </div>
+            <p class="text-sm">See also: Care Guides, Harvard Health Guides.</p>
+        </div>
+    </div>
+    <div class="flex md:hidden flex-col justify-center items-center lg:items-start gap-10 cursor-pointer">
+        <div class="flex w-full items-center cursor-pointer">
+            <button id="show-drug-btn" class="w-fit text-base font-bold text-gray-200 bg-gray-800 py-2 px-4" style="border-radius: 5px 5px 0 0;">Search Drugs</a>
+            <button id="show-conditions-btn" class="w-fit text-base font-bold text-gray-800 bg-gray-200 py-2 px-4" style="border-radius: 5px 5px 0 0;">Search Conditions</a>
+        </div>
+        <div id="show-drug" class="flex flex-col gap-2">
+            <div class="flex w-full flex-wrap gap-1">
+                {% for text in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<a href="/drugs/alpha/{{ text }}" class="flex w-10 h-10 items-center justify-center border border-black rounded-full">{{ text }}</a>{% endfor %}
+                <a href="/drugs/alpha/0-9" class="flex w-20 h-10 items-center justify-center border border-black rounded-full" style="padding: 1rem;">0-9</a>
+            </div>
+            <p class="text-xs">Browse A-Z: Drug, Treatment, Condition or Class.</p>
+        </div>
+        <div id="show-conditions" class="flex flex-col gap-2 hidden">
+            <div class="flex w-full flex-wrap gap-1">
+                {% for text in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}<a href="/conditions/alpha/{{ text }}" class="flex w-10 h-10 items-center justify-center border border-black rounded-full">{{ text }}</a>{% endfor %}
+                <a href="/conditions/alpha/0-9" class="flex w-20 h-10 items-center justify-center border border-black rounded-full" style="padding: 1rem;">0-9</a>
+            </div>
+            <p class="text-xs">See also: Care Guides, Harvard Health Guides.</p>
+        </div>
+    </div>
+</div>
+<script>document.querySelector("#show-drug-btn").addEventListener("click", () => {document.querySelector("#show-conditions").classList.add("hidden"), document.querySelector("#show-drug").classList.remove("hidden"), document.querySelector("#show-drug-btn").classList.add("bg-gray-800", "text-gray-200"), document.querySelector("#show-drug-btn").classList.remove("bg-gray-200", "text-gray-800"), document.querySelector("#show-conditions-btn").classList.add("bg-gray-200", "text-gray-800"), document.querySelector("#show-conditions-btn").classList.remove("bg-gray-800", "text-gray-200")}); document.querySelector("#show-conditions-btn").addEventListener("click", () => {document.querySelector("#show-conditions").classList.remove("hidden"), document.querySelector("#show-drug").classList.add("hidden"), document.querySelector("#show-drug-btn").classList.remove("bg-gray-800", "text-gray-200"), document.querySelector("#show-drug-btn").classList.add("bg-gray-200", "text-gray-800"), document.querySelector("#show-conditions-btn").classList.remove("bg-gray-200", "text-gray-800"), document.querySelector("#show-conditions-btn").classList.add("bg-gray-800", "text-gray-200")});</script>

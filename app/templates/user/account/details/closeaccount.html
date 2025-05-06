@@ -1,0 +1,35 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">Close Account</p>
+</div>
+<section class="flex flex-col gap-5 p-4 sm:px-12 md:px-20 lg:px-16 xl:px-40 2xl:px-64 my-10 select-none">
+<div class="grid bg-[#F5DBD3] p-3 gap-2 shadow rounded-lg" style="grid-template-columns: 20px 1fr;">
+    <svg class="inline pt-1" width="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 0C11.0218 0 7.20644 1.58035 4.3934 4.3934C1.58035 7.20644 0 11.0218 0 15C0 18.9782 1.58035 22.7936 4.3934 25.6066C7.20644 28.4196 11.0218 30 15 30C18.9782 30 22.7936 28.4196 25.6066 25.6066C28.4196 22.7936 30 18.9782 30 15C30 11.0218 28.4196 7.20644 25.6066 4.3934C22.7936 1.58035 18.9782 0 15 0ZM15 6.42857C15.4262 6.42857 15.835 6.5979 16.1364 6.89929C16.4378 7.20069 16.6071 7.60947 16.6071 8.03571C16.6071 8.46196 16.4378 8.87074 16.1364 9.17214C15.835 9.47353 15.4262 9.64286 15 9.64286C14.5738 9.64286 14.165 9.47353 13.8636 9.17214C13.5622 8.87074 13.3929 8.46196 13.3929 8.03571C13.3929 7.60947 13.5622 7.20069 13.8636 6.89929C14.165 6.5979 14.5738 6.42857 15 6.42857ZM19.2857 23.7057H10.7143V21.2943H13.7943V15.1343H11.7857V12.7229H16.2057V21.2943H19.2857V23.7057Z" fill="#FF7373"/></svg>
+    <div class="flex flex-col gap-3">
+        <h3 class="font-bold text-lg">Closing your account is permanent.</h3>
+        <p>All data associated with your account will be deleted (typically within 24-48 hours). This action <b>can't be undone</b>.</p>
+    </div>
+</div>
+<div class="md:pl-5 lg:pl-10 xl:pl-20">
+    <h4 class="font-semibold mb-2">When necessary, the following steps will also be taken:</h4>
+    <ul class="list-disc pl-10">
+        <li>There will be no more email subscriptions, so you will not get any more emails from RxZee.com.</li>
+        <li>All contact lists that have been saved will be erased.</li>
+        <li>My Med List will be completely deleted, including all accounts, medications, notes, etc.</li>
+        <li>Your username will no longer be linked to any old reviews, questions, or comments.</li>
+    </ul>
+</div>
+{% if error %}<p class="text-[#ff0000] max-w-[700px] bg-[#F5DBD3] p-2 rounded">{{ error }}</p>{% endif %}
+<form method="post" class="flex flex-col gap-5 max-w-[700px]">
+{% csrf_token %}
+<input type="password" name="password" placeholder="Password" class="max-w-[300px] bg-[#F5DBD3] p-2 border border-gray-400 focus:border-gray-900 transition duration-300 outline-none rounded" />
+<p class="font-semibold text-sm">In order to delete your account, you need to enter your current password. <a href="#" class="text-[#0095FD]">Forgot Password</a>.</p>
+<textarea name="closure_reason" placeholder="Account Closure Reason (Optional)" class="h-40 bg-[#F5DBD3] p-2 border border-gray-400 focus:border-gray-900 transition duration-300 resize-none outline-none rounded"></textarea>
+<p>Tell us what we can do better.</p>
+<div><input type="checkbox" id="checkbox" required><label for="checkbox" class="pl-2">Yes, I understand that closing my account is final and can't be undone.</label></div>
+<button class="w-fit bg-[#F5DBD3] font-bold border border-gray-300 hover:text-[#ff0000] hover:border-[#ff0000] transition duration-300 py-2 px-4 rounded">Close Account</button>
+</form>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">Account Details</p>
+</div>
+<section class="flex flex-col p-4 sm:px-12 md:px-20 lg:px-16 xl:px-40 2xl:px-64 my-10 select-none">
+<div class="flex items-center border-b-2 border-gray-900 lg:text-lg font-bold">
+    <a href="/account/overview" class="text-[#0095FD] rounded-t p-2">Overview</a>
+    <a href="/account/details" class="bg-[#A3CCD9] rounded-t p-2">Details</a>
+    <a href="/account/subscription" class="text-[#0095FD] rounded-t p-2">Subscription</a>
+</div>
+<div class="flex flex-col gap-5 my-5">
+    <div class="grid md:grid-cols-2 gap-5 py-3 border-b border-gray-300"><strong class="xl:text-lg">Username</strong> <span>johndoe</span></div>
+    <div class="grid md:grid-cols-2 gap-5 py-3 border-b border-gray-300"><strong class="xl:text-lg">Email</strong><div class="flex flex-col gap-1"><span id="current-email">johndoe@gmail.com</span><button id="update-email-link" class="w-fit text-[#0095FD]">Update email</button><form id="email-update-form" class="hidden mt-2 flex flex-col gap-2" method="post">{% csrf_token %}<input type="email" id="email" name="email" placeholder="Enter new email" class="border border-gray-300 p-2 rounded"><button id="change-email-btn" class="w-fit bg-[#A3CCD9] p-2 rounded">Change Email</button></form></div></div>
+    <div class="grid md:grid-cols-2 gap-5 py-3 border-b border-gray-300"><strong class="xl:text-lg">Password</strong><div class="flex flex-col gap-1"><span id="current-password">••••••••</span><button id="update-password-link" class="w-fit text-[#0095FD]">Update password</button><form id="password-update-form" class="hidden mt-2 flex flex-col gap-2" method="post">{% csrf_token %}<input type="password" id="new-password" name="password" placeholder="Enter new password" class="border border-gray-300 p-2 rounded"><button type="button" id="change-password-btn" class="w-fit bg-[#A3CCD9] p-2 rounded">Change Password</button></form></div></div>
+    <div class="grid md:grid-cols-2 gap-5 py-3 border-b border-gray-300"><strong class="xl:text-lg">Two factor authentication</strong> <span>Enabled</span></div>
+    <div class="grid md:grid-cols-2 gap-5 py-3 border-b border-gray-300"><strong class="xl:text-lg">Info</strong><div class="flex flex-col gap-1"><span id="current-status">Healthcare Professional? <b>No</b></span><button id="change-status-link" class="w-fit text-[#0095FD]">Change</button><div id="status-update-form" class="hidden mt-2 flex flex-col gap-2"><label><input type="radio" name="healthcare-professional" value="yes" class="mr-2">Yes</label><label><input type="radio" name="healthcare-professional" value="no" class="mr-2" checked>No</label><button type="button" id="change-status-btn" class="w-fit bg-[#A3CCD9] p-2 rounded">Change</button></div></div></div>
+</div>
+<div class="flex flex-col gap-5 mt-10">
+    <h3 class="font-bold text-lg">Delete Account</h3>
+    <p>When you close your RxZee.com account, all the information connected to it will be gone forever. Submit a Request <a href="/account/details/closeaccount" class="w-fit text-[#0095FD]">close account request here</a>.</p>
+</div>
+</section>
+<script>document.getElementById('change-status-link').addEventListener('click', function(event) {document.getElementById('status-update-form').classList.toggle('hidden')}); document.getElementById('update-password-link').addEventListener('click', function(event) {document.getElementById('password-update-form').classList.toggle('hidden')}); document.getElementById('update-email-link').addEventListener('click', function(event) {document.getElementById('email-update-form').classList.toggle('hidden')})</script>
+{% endblock %}

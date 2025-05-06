@@ -1,0 +1,69 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<style>.form>p{display: flex; flex-direction: column; gap: 5px;} .form p:nth-child(9){flex-direction: row !important;} .errorlist{color: #ff0000; background: #ff000020; padding: 10px; border-radius: 5px;}</style>
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">{{ title }}</p>
+</div>
+<section class="grid md:grid-cols-3 lg:grid-cols-4 items-start gap-10 md:gap-2 lg:md:gap-5 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 py-10">
+<div class="flex flex-col md:col-span-2 lg:col-span-3 gap-5">
+<p class="text-justify">Welcome to the RxZee.com Q&A site, where people with questions about medicines and medical problems can get help from other members of the community. To ask about other things, visit our <a href="#" class="text-[#0095FD] font-bold">Support page</a>.</p>
+<div class="relative"><input type="text" id="input-search" class="w-full p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" placeholder="Enter search term" /><span class="absolute top-[1px] right-[1px] bg-[#A3CCD9] p-3"><svg width="16" height="16" viewBox="0 0 512 512" fill="#ffffff"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></span></div> 
+<div class="flex text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl items-center font-bold border-b-2 border-gray-300 gap-[1px]">
+    <button id="show-all" class="bg-[#A3CCD9] p-1 sm:px-4 whitespace-nowrap rounded-t-md hover:bg-[#A3CCD9] transition duration-300">Popular</button>
+    <button id="show-medications" class="p-1 sm:px-4 whitespace-nowrap rounded-t-md hover:bg-[#A3CCD9] transition duration-300">Only Medications</button>
+    <button id="show-conditions" class="p-1 sm:px-4 whitespace-nowrap rounded-t-md hover:bg-[#A3CCD9] transition duration-300">Only Conditions</button>
+</div>
+<div id="medication" class="flex flex-col gap-3 py-5">
+    <h3 class="font-bold text-xl md:text-2xl lg:text-3xl">Top Medication support groups</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">{% for item in top_medications_support_groups %}<a href="#" class="text-[#0095FD] hover:underline xl:text-lg">{{ item }}</a>{% endfor %}</div>
+</div>
+<div id="conditions" class="flex flex-col gap-3 py-5">
+    <h3 class="font-bold text-xl md:text-2xl lg:text-3xl">Top Medical condition support groups</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">{% for item in top_conditions_support_groups %}<a href="#" class="text-[#0095FD] hover:underline xl:text-lg">{{ item }}</a>{% endfor %}</div>
+</div>
+<div class="flex flex-col gap-3 py-5">
+    <h3 class="font-bold text-xl md:text-2xl lg:text-3xl">Browse A to Z</h3>
+    <div class="flex items-center flex-wrap gap-1">{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}<a href="#{{ letter }}" class="flex w-fit justify-center items-center font-bold text-xl max-w-10 max-h-10 min-w-10 min-h-10 bg-gray-300 hover:text-[#0095FD] hover:bg-[#A3CCD9] transition duration-300 rounded">{{ letter|upper }}</a>{% endfor %}</div>
+</div>
+</div>
+<div class="flex flex-col gap-10 text-sm xl:text-base">
+<div class="flex items-center gap-2">
+    <span class="block text-base font-semibold bg-[#A3CCD9] p-3 rounded-full">JD</span>
+    <div class="flex flex-col">
+        <span class="font-semibold">John Doe</span>
+        <span class="text-xs">Answers 0</span>
+    </div>
+</div>
+<div class="flex flex-col gap-1">
+    <p class="flex justify-between items-center gap-1 border-b border-gray-700"><span>My Friends</span><span class="font-bold">0</span></p>
+    <p class="flex justify-between items-center gap-1 border-b border-gray-700"><span>Points</span><span class="font-bold">0</span></p>
+    <div class="flex justify-between items-center gap-1 border-b border-gray-700"><span>Member Level</span><a href="#" class="text-[#0095FD] font-bold">Level 0</a></div>
+    <a href="#" class="text-[#0095FD] font-bold">Member Level</a>
+    <a href="#" class="text-[#0095FD] font-bold">My Settings</a>
+</div>
+<form method="post" class="flex flex-col gap-3">
+    {% csrf_token %}
+    <h3 class="font-bold">Subscribe to Rx Zee newsletters</h3>
+    <div class="flex flex-col gap-1">
+        <div class="flex items-start gap-1"><input type="checkbox" name="monthly_newsletter" id="monthly_newsletter" class="mt-1" /><label for="monthly_newsletter">Monthly<br>newsletter</label></div>
+        <div class="flex items-start gap-1"><input type="checkbox" name="daily_newsletter" id="daily_newsletter" class="mt-1" /><label for="daily_newsletter">Daily<br>newsletter</label></div>
+        <div class="flex items-start gap-1"><input type="checkbox" name="FDA_safety_alerts" id="FDA_safety_alerts" class="mt-1" /><label for="FDA_safety_alerts">FDA safety<br>alerts</label></div>
+        <div class="flex items-start gap-1"><input type="checkbox" name="asfbatna" id="asfbatna" class="mt-1" required /><label for="asfbatna">I accept the Terms and Privacy Policy</label></div>
+    </div>
+    <div class="flex">
+        <input type="email" name="email" placeholder="Email address" class="w-full p-1 border border-r-0 border-gray-400 outline-none rounded-tl rounded-bl" required />
+        <button class="w-fit p-1 bg-[#A3CCD9] border border-gray-400 rounded-tr rounded-br hover:bg-[#B3DDE9] transition duration-300">Subscribe</button>
+    </div>
+</form>
+<div class="flex flex-col">
+    <h3 class="text-lg font-bold">My Support Groups</h3>
+    <p class="mt-1 text-sm">You haven't joined any help groups yet.</p>
+    <a href="#" class="text-[#0095FD] mt-3">Top 50 groups</a>
+    <a href="#" class="text-[#0095FD]">Groups by medication</a>
+    <a href="#" class="text-[#0095FD]">Groups by condition</a>
+</div>
+</div>
+</section>
+<script>buttons = [document.querySelector("#show-all"), document.querySelector("#show-medications"), document.querySelector("#show-conditions")]; document.querySelector("#show-all").addEventListener('click', () => { document.querySelector("#medication").classList.remove('hidden'); document.querySelector("#conditions").classList.remove('hidden'); buttons.forEach(element => element.classList.remove('bg-[#A3CCD9]')); document.querySelector("#show-all").classList.add('bg-[#A3CCD9]'); }); document.querySelector("#show-medications").addEventListener('click', () => { document.querySelector("#medication").classList.remove('hidden'); document.querySelector("#conditions").classList.add('hidden'); buttons.forEach(element => element.classList.remove('bg-[#A3CCD9]')); document.querySelector("#show-medications").classList.add('bg-[#A3CCD9]'); }); document.querySelector("#show-conditions").addEventListener('click', () => { document.querySelector("#medication").classList.add('hidden'); document.querySelector("#conditions").classList.remove('hidden'); buttons.forEach(element => element.classList.remove('bg-[#A3CCD9]')); document.querySelector("#show-conditions").classList.add('bg-[#A3CCD9]'); });</script>
+{% endblock %}

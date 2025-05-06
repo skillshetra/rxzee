@@ -1,0 +1,66 @@
+{% extends 'admin/components/index.html' %}
+{% block content %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>
+<div class="flex flex-col w-full bg-gray-100 gap-2 rounded">
+<div class="flex justify-between items-center p-4 border-b border-gray-400 rounded">
+<h3 class="md:text-xl font-bold" style="color: #10b981; background: #10b981; background: linear-gradient(90deg, #118a61 15%, rgba(11, 139, 123, 1) 49%, rgba(8, 122, 125, 1) 72%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">{{ user.first_name }} {{ user.last_name }}</h3>
+</div>
+<div class="flex flex-col bg-[#f9fafb] border border-gray-400 text-xs ms:text-sm xl:text-base">
+<div class="w-full mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h1 class="text-2xl font-bold mb-4">User Profile</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Username</label>
+            {% if user.username %}<p class="border-b border-gray-300 py-2">{{ user.username }}</p>{% else %}<b class="border-b border-gray-300 py-2">Not Provided</b>{% endif %}
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Email</label>
+            {% if user.email %}<p class="border-b border-gray-300 py-2">{{ user.email }}</p>{% else %}<b class="border-b border-gray-300 py-2">Not Provided</b>{% endif %}
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Phone Number</label>
+            {% if user.phone_number %}<p class="border-b border-gray-300 py-2">{{ user.phone_number }}</p>{% else %}<b class="border-b border-gray-300 py-2">Not Provided</b>{% endif %}
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Address</label>
+            {% if user.address %}<p class="border-b border-gray-300 py-2">{{ user.address }}</p>{% else %}<b class="border-b border-gray-300 py-2">Not Provided</b>{% endif %}
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Date of Birth</label>
+            {% if user.date_of_birth %}<p class="border-b border-gray-300 py-2">{{ user.date_of_birth }}</p>{% else %}<b class="border-b border-gray-300 py-2">Not Provided</b>{% endif %}
+        </div>
+        <div>
+            <label class="block text-sm font-semibold text-gray-700">Website Link</label>
+            <p class="border-b border-gray-300 py-2">{% if user.link %}<a href="{{ user.link }}" class="text-blue-500 hover:underline">{{ user.link }}</a>{% else %}<b>Not Provided</b>{% endif %}</p>
+        </div>
+    </div>
+    <h2 class="text-xl font-bold mt-6 mb-4">Preferences</h2>
+    <div class="space-y-2">
+        <div class="flex items-center">
+            <input type="checkbox" id="mednews" class="mr-2" {% if user.every_day_mednews %}checked{% endif %} disabled>
+            <label for="mednews" class="text-gray-700">Every Day Mednews</label>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="monthly_newsletter" class="mr-2" {% if user.monthly_newsletter %}checked{% endif %} disabled>
+            <label for="monthly_newsletter" class="text-gray-700">Monthly Newsletter</label>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="monthly_newsletter_health_care" class="mr-2" {% if user.monthly_newsletter_health_care %}checked{% endif %} disabled>
+            <label for="monthly_newsletter_health_care" class="text-gray-700">Monthly Newsletter (Health Care)</label>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="FDA_approvals" class="mr-2" {% if user.FDA_approvals_for_drugs %}checked{% endif %} disabled>
+            <label for="FDA_approvals" class="text-gray-700">FDA Approvals for Drugs</label>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="FDA_safety_alerts" class="mr-2" {% if user.FDA_safety_alerts %}checked{% endif %} disabled>
+            <label for="FDA_safety_alerts" class="text-gray-700">FDA Safety Alerts</label>
+        </div>
+    </div>
+    <div class="mt-6">
+        <a href="/{{ ADMIN_PATH }}users/delete/{{ user.id }}" class="text-red-500 hover:underline">Delete Account</a>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

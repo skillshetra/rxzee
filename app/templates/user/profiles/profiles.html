@@ -1,0 +1,26 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">{{ title }}</p>
+</div>
+<section class="md:grid md:grid-cols-3 xl:md:grid-cols-5 m-4 sm:mx-12 md:mx-20 lg:mx-16 xl:mx-40 2xl:mx-64 my-10 gap-5 md:gap-0 bg-gray-50 rounded overflow-hidden select-none">
+<div class="flex flex-col border border-gray-300 rounded-l">
+    <a href="/user/profiles/add" class="w-full flex justify-center xl:text-xl items-center text-[#0095FD] font-bold min-h-10 max-h-10 border-b border-gray-300">Add Profile</a>
+    <div class="flex flex-col gap-6 py-4">
+        {% if all_profiles %}
+        <div class="flex flex-col mb-5 gap-3">
+            {% for profile in all_profiles %}
+            <a href="/user/profiles/{{ profile.id }}" class="flex lg:text-lg items-center justify-between gap-2 px-2 border-b border-gray-300">{{ profile.profile_name|slice:":20" }}<svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M8 10L0 1.22807L1.12 0L8 7.54386L14.88 0L16 1.22807L8 10Z" fill="#202227"/></svg></a>
+            {% endfor %}
+            <a href="/user/profiles/add" class="flex lg:text-lg justify-center items-center gap-2 px-2 border-b border-gray-400 mt-3"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13.0234 7.75391H7.5V13.2637H5.68164V7.75391H0.171875V5.92188H5.68164V0.412109H7.5V5.92188H13.0234V7.75391Z" fill="#202227"/></svg>Add Profile</a>
+        </div>
+        {% else %}<h3 class="text-center font-bold text-xl xl:text-2xl">Get started</h3><p class="mb-5 px-4">welcome to My Med List, the RxZee.com drug management site.</p><p class="px-4">Make a new biography for your account to begin.</p>{% endif %}
+        <a href="/user/profiles/add" class="text-center text-lg text-[#0095FD] bg-[#A3CCD9] xl:text-xl py-2 px-4 rounded mx-4">Add Profile</a>
+    </div>
+</div>
+<div class="md:col-span-2 xl:col-span-4 border md:border-l-0 border-gray-300"><div class="hidden md:block min-h-10 max-h-10 border-b border-gray-300"></div>
+<div class="flex flex-col gap-10 p-2 rounded-r"><div class="flex flex-col gap-3"><h3 class="text-lg xl:text-xl">My List of Medicines</h3><p>You can get useful medical information in a simple, easy-to-read, and personalized format by adding your medications. Get immediate access to detailed information about consumers, data on drug interactions (including those involving food, allergies, and conditions), stories from the past, and FDA alerts.</p></div><div class="flex flex-col gap-3"><h3 class="text-lg xl:text-xl">Quick tip</h3><p>For yourself, other family members, friends, etc., you can make profiles. You can change names whenever you want.</p></div></div>
+</div>
+</section>
+{% endblock %}

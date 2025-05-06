@@ -1,0 +1,43 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:px-20 lg:px-24 xl:px-40 2xl:px-64 pt-5 pb-10 select-none">
+    <div id="breadcrumbs" class="flex flex-wrap text-xs sm:text-base md:text-lg items-center gap-2">
+        <div class="flex gap-2 items-center"><a href="/" class="text-gray-700 hover:text-gray-950 transition duration-300">Home</a> <span> > </span></div>
+        <div class="flex gap-2 items-center"><a href="/signin" class="text-gray-700 hover:text-gray-950 transition duration-300">Account</a></div>
+    </div>
+    <p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">Account Sign In</p>
+</div>
+<section class="grid md:grid-cols-2 lg:grid-cols-3 w-[315px] sm:w-96 md:w-[550px] xl:md:w-[800px] 2xl:md:w-[1000px] gap-10 py-10 mx-auto">
+    <div class="flex flex-col lg:col-span-2 gap-10">
+        <p class="font-semibold">New to RxZee.com? <a href="/register" class="text-[#0095FD]">Create an account</a></p>
+        <div class="grid w-full md:grid-cols-2 gap-5">
+            <form class="flex flex-col gap-5" method="post">
+                {% csrf_token %}
+                {% if error %}<p class="text-[#ff0000] bg-[#ff000020] p-2 rounded">{{ error }}</p>{% endif %}
+                <div class="flex flex-col gap-2">
+                    <label for="usernameemail" class="font-semibold">Username or Email</label>
+                    <input id="usernameemail" type="text" name="usernameemail" class="bg-white border border-gray-400 focus:border-gray-900 outline-none p-2 rounded transition duration-300" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="password" class="font-semibold">Password</label>
+                    <input id="password" type="password" name="password" class="bg-white border border-gray-400 focus:border-gray-900 outline-none p-2 rounded transition duration-300" />
+                </div>
+                <div class="flex items-center gap-3"><button class="text-gray-900 font-semibold bg-[#A3CCD9] hover:bg-[#8EB3C3] py-2 transition duration-300 px-4 rounded">Sign In</button><a href="/" class="text-[#0095FD]">Forgot password?</a></div>
+                <input id="session_data" name="session_data" value="0.0.0.0" class="hidden" />
+            </form>
+            <div class="flex flex-col gap-5 pt-5">
+                <div class="grid w-full grid-cols-4 px-2 py-1 border border-gray-400 rounded bg-white">
+                    <svg class="m-2" width="18" height="19" viewBox="0 0 18 19" fill="none"><g clip-path="url(#clip0_9_256)"><g clip-path="url(#clip1_9_256)"><g clip-path="url(#clip2_9_256)"><path d="M9.00002 4.34241C10.3275 4.34241 11.5163 4.79991 12.4538 5.69241L15.0225 3.12366C13.4625 1.67241 11.4263 0.779907 9.00002 0.779907C5.48252 0.779907 2.44127 2.79741 0.960022 5.73741L3.95252 8.05866C4.66127 5.92491 6.65252 4.34241 9.00002 4.34241Z" fill="#EA4335"/><path d="M17.6175 9.98616C17.6175 9.39741 17.5612 8.82741 17.475 8.27991H9V11.6624H13.8525C13.635 12.7724 13.005 13.7174 12.06 14.3549L14.9588 16.6049C16.65 15.0374 17.6175 12.7199 17.6175 9.98616Z" fill="#4285F4"/><path d="M3.94875 11.5012C3.76875 10.9574 3.66375 10.3799 3.66375 9.77993C3.66375 9.17993 3.765 8.60243 3.94875 8.05868L0.95625 5.73743C0.345 6.95243 0 8.32493 0 9.77993C0 11.2349 0.345 12.6074 0.96 13.8224L3.94875 11.5012Z" fill="#FBBC05"/><path d="M8.99999 18.7799C11.43 18.7799 13.4737 17.9812 14.9587 16.6012L12.06 14.3512C11.2537 14.8949 10.215 15.2137 8.99999 15.2137C6.65249 15.2137 4.66124 13.6312 3.94874 11.4974L0.956238 13.8187C2.44124 16.7624 5.48249 18.7799 8.99999 18.7799Z" fill="#34A853"/></g></g></g><defs><clipPath id="clip0_9_256"><rect width="18" height="18" fill="white" transform="translate(0 0.779907)"/></clipPath><clipPath id="clip1_9_256"><rect width="18" height="18" fill="white" transform="translate(0 0.779907)"/></clipPath><clipPath id="clip2_9_256"><rect width="18" height="18" fill="white" transform="translate(0 0.779907)"/></clipPath></defs></svg>
+                    <span class="flex justify-center items-center text-center col-span-3">Sign in with <br>Google</span>
+                </div>
+                <div class="grid w-full grid-cols-4 px-2 py-1 border border-gray-400 rounded bg-white">
+                    <svg class="m-2" width="25" height="26" viewBox="0 0 25 26" fill="none"><mask id="mask0_9_964" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="2" width="23" height="23"><path d="M1.53644 2.41138H23.2474V24.1223H1.53644V2.41138Z" fill="white"/></mask><g mask="url(#mask0_9_964)"><path d="M4.80727 2.41138H20.0625C20.2786 2.41138 20.4896 2.43221 20.7005 2.47388C20.9114 2.51815 21.1172 2.57804 21.3151 2.66138C21.513 2.74211 21.7005 2.84367 21.8802 2.96346C22.0573 3.08325 22.2239 3.21867 22.375 3.36971C22.526 3.52075 22.6614 3.68742 22.7812 3.8645C22.901 4.04419 23.0026 4.23169 23.0833 4.42961C23.1666 4.62752 23.2291 4.83325 23.2708 5.04419C23.3125 5.25513 23.3333 5.46606 23.3333 5.68221V20.9374C23.3333 21.1536 23.3125 21.3645 23.2708 21.5754C23.2291 21.7864 23.1666 21.9921 23.0833 22.19C23.0026 22.3879 22.901 22.5754 22.7812 22.7551C22.6614 22.9322 22.526 23.0989 22.375 23.2499C22.2239 23.401 22.0573 23.5364 21.8802 23.6562C21.7005 23.776 21.513 23.8775 21.3151 23.9583C21.1172 24.0416 20.9114 24.1041 20.7005 24.1458C20.4896 24.1874 20.2786 24.2083 20.0625 24.2083H4.80727C4.59113 24.2083 4.38019 24.1874 4.16925 24.1458C3.95831 24.1041 3.75258 24.0416 3.55467 23.9583C3.35675 23.8775 3.16925 23.776 2.98956 23.6562C2.81248 23.5364 2.64581 23.401 2.49477 23.2499C2.34373 23.0989 2.20831 22.9322 2.08852 22.7551C1.96873 22.5754 1.86717 22.3879 1.78644 22.19C1.7031 21.9921 1.64321 21.7864 1.59894 21.5754C1.55727 21.3645 1.53644 21.1536 1.53644 20.9374V5.68221C1.53644 5.46606 1.55727 5.25513 1.59894 5.04419C1.64321 4.83325 1.7031 4.62752 1.78644 4.42961C1.86717 4.23169 1.96873 4.04419 2.08852 3.8645C2.20831 3.68742 2.34373 3.52075 2.49477 3.36971C2.64581 3.21867 2.81248 3.08325 2.98956 2.96346C3.16925 2.84367 3.35675 2.74211 3.55467 2.66138C3.75258 2.57804 3.95831 2.51815 4.16925 2.47388C4.38019 2.43221 4.59113 2.41138 4.80727 2.41138Z" fill="#383838"/></g><path d="M6.85937 9.77596C6.85937 9.60669 6.77344 9.39315 6.64583 9.30721L5.32552 7.69002V7.43481H9.4974L12.6901 14.5025L15.5417 7.43481H19.5026V7.69002L18.3516 8.79679C18.2682 8.84106 18.224 8.96867 18.224 9.09627V17.1848C18.224 17.3124 18.2682 17.44 18.3516 17.5234L19.5026 18.5885V18.8437H13.8385V18.5885L14.9896 17.4817C15.1172 17.3541 15.1172 17.3124 15.1172 17.1405V10.6275L11.8828 18.802H11.4557L7.71094 10.6275V16.1197C7.66667 16.3333 7.7526 16.5885 7.92187 16.7577L9.41146 18.5885V18.802H5.15625V18.5885L6.64583 16.7577C6.8151 16.5885 6.90104 16.3333 6.85937 16.1197V9.77596Z" fill="white"/><path d="M8.61241 15.4248C8.56293 15.4248 8.52126 15.417 8.48741 15.4039C8.45095 15.3831 8.42491 15.3571 8.40407 15.3206C8.38845 15.2867 8.38324 15.2529 8.38324 15.2164C8.38324 15.1748 8.38845 15.1383 8.40407 15.1018C8.42491 15.068 8.45095 15.0446 8.48741 15.0289C8.52126 15.0081 8.56293 14.9977 8.61241 14.9977C8.65407 14.9977 8.69053 15.0081 8.72699 15.0289C8.76084 15.0446 8.78949 15.068 8.81032 15.1018C8.83116 15.1383 8.84157 15.1722 8.84157 15.206C8.84157 15.2685 8.82074 15.3206 8.77907 15.3623C8.73741 15.4039 8.68012 15.4248 8.61241 15.4248Z" fill="#383838"/></svg>
+                    <span class="flex justify-center items-center text-center col-span-3">Sign in with <br> Medium</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'auth/sidewidget.html' %}
+</section>
+<script>document.addEventListener('DOMContentLoaded', async () => {try {document.querySelector("#session_data").value = await JSON.stringify(await (await fetch('https://api.rudrakumarmishra.com')).json());} catch{}});</script>
+{% endblock %}

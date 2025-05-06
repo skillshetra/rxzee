@@ -1,0 +1,17 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<style>.form>p{display: flex; flex-direction: column; gap: 5px;} .form p:nth-child(9){flex-direction: row !important;} .errorlist{color: #ff0000; background: #ff000020; padding: 10px; border-radius: 5px;}</style>
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">{{ title }}</p>
+</div>
+<section class="grid md:grid-cols-2 bg-white items-start gap-10 md:gap-2 lg:md:gap-5 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 py-10">
+<form method="post" class="flex flex-col gap-8">
+    {% csrf_token %}
+    <div><label for="question" class="text-lg"><b>Title </b>(max 100 characters)</label>{{ form.question }}<p>Example: Does Gabapentin cause weight gain?</p></div>
+    <div><label for="details" class="text-lg"><b>Details Recommended</b> (minimum 100 characters)</label>{{ form.details }}<p class="text-justify text-sm">Provide as much description as possible so that our members can better comprehend and reply to your query. Questions must adhere to our <a href="#" class="text-[#0095FD]">community guidelines</a> and include medications and/or related medical problems. Subscribers to appropriate support groups will receive notifications when your query is posted.</p></div>
+    <button class="w-fit bg-[#A3CCD9] py-1 px-3 rounded">Submit</button>
+</form>
+<div class="flex flex-col gap-5 border-l-2 border-[#A3CCD9] p-2"><h3 class="text-lg lg:text-xl xl:text-2xl font-bold">Tips for Asking Good Questions</h3><ul style="list-style-type: disc;" class="pl-10"><li>Say something simple like "what", "when", "where", or "how" to begin your question.</li><li>Make sure that your question or answer is not rude or hurtful, or it could be deleted or banned.</li><li>Do not use your real name if you want to stay hidden. Google may be able to find your name.</li><li>Spend some time putting your question into groups. This will help other people find the question a lot.</li></ul></div>
+</section>
+{% endblock %}

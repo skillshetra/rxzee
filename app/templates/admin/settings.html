@@ -1,0 +1,11 @@
+{% extends 'admin/components/index.html' %}
+{% block content %}
+<style>.errorlist {color: #ff0000; background: #ff000020; padding: 5px 10px; border-radius: 5px; margin: 1rem 0;} form div{display: flex; flex-direction: column; gap: 15px;} form div div {display: flex; flex-direction: column; gap: 5px;}</style>
+<section class="flex flex-col w-full bg-gray-100 gap-2 rounded">
+    <h3 class="md:text-xl font-bold p-4 border-b border-gray-400 rounded" style="color: #10b981; background: #10b981; background: linear-gradient(90deg, #118a61 15%, rgba(11, 139, 123, 1) 49%, rgba(8, 122, 125, 1) 72%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">Settings</h3>
+<div class="grid xl:grid-cols-2 gap-5 p-4 mb-10">
+    <form action="/{{ ADMIN_PATH }}changegoogletagid/" method="post" class="flex flex-col gap-5 shadow-lg p-2 rounded">{% csrf_token %}<h2 class="text-lg font-semibold text-[#10b981]">Change Google Tag ID</h2><div>{{ ChangeSocialsForm }}</div><button class="w-fit text-gray-200 bg-gray-900 py-2 px-4 border border-gray-500 rounded hover:bg-gray-800 transition duration-300">Change ID</button></form>
+    <form method="post" class="flex flex-col gap-5 shadow-lg p-2 rounded">{% csrf_token %}<h2 class="text-lg font-semibold text-[#10b981]">Change Admin Password</h2><div>{{ ChangePasswordForm }}</div><button class="w-fit text-gray-200 bg-gray-900 py-2 px-4 border border-gray-500 rounded hover:bg-gray-800 transition duration-300">Change Password</button></form>
+</div>
+</section>
+{% endblock %}

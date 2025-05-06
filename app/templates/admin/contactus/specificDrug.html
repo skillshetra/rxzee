@@ -1,0 +1,20 @@
+{% extends 'admin/components/index.html' %}
+{% block content %}
+<div class="flex flex-col max-w-[800px] bg-gray-100 gap-14 py-10 px-4 mx-auto rounded">
+<div class="flex flex-col gap-5">
+<div class="flex sm:w-fit gap-2 bg-gray-200 p-5 sm:mx-auto rounded">
+<span class="hidden sm:flex w-12 h-12 text-2xl justify-center items-center font-bold text-gray-200 bg-gray-600 rounded-full">{{ message.fullname|slice:":1" }}</span>
+<div class="flex flex-col"><span class="font-bold">{{ message.fullname }}</span><span class="text-sm">{{ message.email }}</span></div></div>
+<p><b>Subject:</b> {{ message.subject }}</p>
+<p>{{ message.message }} <br /><i class="inline-block w-full text-sm text-right">Message sent on {{ message.last_updated }}</i></p>
+</div>
+<div class="flex flex-col gap-2">
+    <h3 class="font-bold text-xl">Files attached with message</h3>
+    <div class="flex flex-col gap-1">
+        {% for file in allFiles %}
+            <a class="text-[#0000EE] hover:text-[#551A8B] transition duration-300" href="{{ file }}" target="_blank" rel="noopener noreferrer" download>{{ file }}</a>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

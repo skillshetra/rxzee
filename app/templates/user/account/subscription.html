@@ -1,0 +1,38 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">Account Subscription</p>
+</div>
+<section class="flex flex-col p-4 sm:px-12 md:px-20 lg:px-16 xl:px-40 2xl:px-64 my-10 select-none">
+<div class="flex items-center border-b-2 border-gray-900 lg:text-lg font-bold">
+    <a href="/account/overview" class="text-[#0095FD] rounded-t p-2">Overview</a>
+    <a href="/account/details" class="text-[#0095FD] rounded-t p-2">Details</a>
+    <a href="/account/subscription" class="bg-[#A3CCD9] rounded-t p-2">Subscription</a>
+</div>
+<div class="bg-[#A3CCD9] p-3 shadow rounded-lg lg:px-10 xl:px-20 text-lg mt-5 sm:text-justify"><svg class="inline" width="20" viewBox="0 0 22 22" fill="none"><path d="M11 0.580017C8.21523 0.580017 5.54451 1.68626 3.57538 3.6554C1.60625 5.62453 0.5 8.29524 0.5 11.08C0.5 13.8648 1.60625 16.5355 3.57538 18.5046C5.54451 20.4738 8.21523 21.58 11 21.58C13.7848 21.58 16.4555 20.4738 18.4246 18.5046C20.3938 16.5355 21.5 13.8648 21.5 11.08C21.5 8.29524 20.3938 5.62453 18.4246 3.6554C16.4555 1.68626 13.7848 0.580017 11 0.580017ZM11 5.08002C11.2984 5.08002 11.5845 5.19854 11.7955 5.40952C12.0065 5.6205 12.125 5.90665 12.125 6.20502C12.125 6.50339 12.0065 6.78953 11.7955 7.00051C11.5845 7.21149 11.2984 7.33002 11 7.33002C10.7016 7.33002 10.4155 7.21149 10.2045 7.00051C9.99353 6.78953 9.875 6.50339 9.875 6.20502C9.875 5.90665 9.99353 5.6205 10.2045 5.40952C10.4155 5.19854 10.7016 5.08002 11 5.08002ZM14 17.174H8V15.486H10.156V11.174H8.75V9.48602H11.844V15.486H14V17.174Z" fill="#0095FD"/></svg><p class="pl-5 inline">Please add newsletters@rxzee.com and helpsubs@rxzee.com to your address book or safe sender list to make sure you get your emails. <a href="#" class="text-[#0095FD]">View the instructions</a>.</p></div>
+<form method="post">
+{% csrf_token %}
+<div class="flex items-center gap-5 text-gray-900 font-semibold my-10 text-sm lg:text-lg xl:text-xl whitespace-nowrap">
+    <button class="bg-[#A3CCD9] p-2 sm:px-4 rounded-md hover:text-gray-700 transition duration-300">Save Changes</button>
+    <div class="unsubscribe bg-white border border-gray-400 p-2 sm:px-4 rounded-md transition hover:text-gray-700 hover:bg-gray-200 duration-300 cursor-pointer">Unsubscribe All</div>
+</div>
+<div class="flex flex-col bg-white border border-gray-300">
+    <h1 class="grid grid-cols-3 text-lg font-bold xl:text-xl 2xl:text-2xl"><span class="flex items-center justify-center col-span-2 border-b border-r border-gray-300 px-2 py-4">Subscription Type</span> <span class="flex items-center justify-center border-b border-gray-300 px-2 py-4">Email</span></h1>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">Every Day MedNews</h5><p class="text-xs md:text-sm xl:text-base">News about drugs and health should be kept up to date.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.every_day_mednews }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">Monthly Newsletter</h5><p class="text-xs md:text-sm xl:text-base">There are new approvals and signals, safety alerts, and news.</p></div> <label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.monthly_newsletter }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">Monthly Newsletter</h5><p class="text-xs md:text-sm xl:text-base">For people who work in health care.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.monthly_newsletter_health_care }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">FDA Approvals for Drugs</h5><p class="text-xs md:text-sm xl:text-base">Most recent new drug approvals, as soon as the FDA makes them public.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.FDA_approvals_for_drugs }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">FDA Safety Alerts</h5><p class="text-xs md:text-sm xl:text-base">The FDA's most recent drug safety alerts, as soon as they come out.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.FDA_safety_alerts }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><p class="text-xs md:text-sm xl:text-base py-4">Messages from our supporters from time to time</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.supporters }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">Notice of projects for eDetailing</h5><p class="text-xs md:text-sm xl:text-base">For people who work in health care.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.notice_of_projects_for_eDetailing }} Email</label></div>
+    <div class="grid grid-cols-3"><div class="flex flex-col col-span-2 border-b border-r border-gray-300 p-2 lg:px-8"><h5 class="font-semibold lg:text-lg xl:text-xl">A notice of CME events</h5><p class="text-xs md:text-sm xl:text-base">For people who work in health care.</p></div><label class="flex items-center justify-center border-b border-gray-300 p-2 gap-1 font-semibold">{{ form.notice_of_CME_events }} Email</label></div>
+</div>
+<div class="flex items-center gap-5 text-gray-900 font-semibold my-10 text-sm lg:text-lg xl:text-xl whitespace-nowrap">
+    <button class="bg-[#A3CCD9] p-2 sm:px-4 rounded-md hover:text-gray-700 transition duration-300">Save Changes</button>
+    <div class="unsubscribe bg-white border border-gray-400 p-2 sm:px-4 rounded-md transition hover:text-gray-700 hover:bg-gray-200 duration-300 cursor-pointer">Unsubscribe All</div>
+</div>
+</form>
+</section>
+<script>document.querySelectorAll(".unsubscribe").forEach(button => {button.addEventListener("click", () => {document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {checkbox.checked = false})})})</script>
+{% endblock %}

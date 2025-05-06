@@ -1,0 +1,5 @@
+<div id="breadcrumbs" class="flex flex-wrap text-xs sm:text-base md:text-lg items-center gap-2">
+    {% for breadcrumb in breadcrumbs %}
+    <div class="flex gap-2 items-center"><a href="{{ breadcrumb.link }}" class="text-gray-700 hover:text-gray-950 transition duration-300">{{ breadcrumb.name }}</a> <span> > </span></div>
+    {% endfor %}
+</div>

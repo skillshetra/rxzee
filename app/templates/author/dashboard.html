@@ -1,0 +1,32 @@
+{% extends 'author/components/index.html' %}
+{% block content %}
+{% load static %}
+<style>#data-grid a:nth-child(2n-1){background: #d1d5db}</style>
+<section class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mx-5 py-4">
+    <a href="/author/vitaminsandsupplements" class="flex relative h-40 flex-col justify-end p-4 bg-white rounded-lg shadow-md hover:bg-gray-100" style="background: linear-gradient(90deg, #3acbd7 0%, #89ebf4 100%);">
+        <span class="text-gray-100 text-xl">Vitamins</span>
+        <p class="ml-2 text-gray-200 text-3xl">{{ top_stats.vitamins }}</p>
+        <svg class="absolute w-32 h-32 top-[10%] right-5 ml-auto fill-gray-200" width="20px" height="20px" viewBox="0 0 576 512"><path d="M64 144c0-26.5 21.5-48 48-48s48 21.5 48 48V256H64V144zM0 144V368c0 61.9 50.1 112 112 112s112-50.1 112-112V189.6c1.8 19.1 8.2 38 19.8 54.8L372.3 431.7c35.5 51.7 105.3 64.3 156 28.1s63-107.5 27.5-159.2L427.3 113.3C391.8 61.5 321.9 49 271.3 85.2c-28 20-44.3 50.8-47.3 83V144c0-61.9-50.1-112-112-112S0 82.1 0 144zm296.6 64.2c-16-23.3-10-55.3 11.9-71c21.2-15.1 50.5-10.3 66 12.2l67 97.6L361.6 303l-65-94.8zM491 407.7c-.8 .6-1.6 1.1-2.4 1.6l4-2.8c-.5 .4-1 .8-1.6 1.2z"/></svg>
+    </a>
+    <a href="/author/drugs" class="flex relative h-40 flex-col justify-end p-4 bg-white rounded-lg shadow-md hover:bg-gray-100" style="background: linear-gradient(90deg, #6aa6e6 0%, #2a70ba 100%);">
+        <span class="text-gray-100 text-xl">Drugs</span>
+        <p class="ml-2 text-gray-200 text-3xl">{{ top_stats.drugs }}</p>
+        <svg class="absolute w-32 h-32 top-[10%] right-5 ml-auto fill-gray-200" width="20px" height="20px" viewBox="0 0 512 512"><path d="M441 7l32 32 32 32c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-15-15L417.9 128l55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-72-72L295 73c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l55 55L422.1 56 407 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0zM210.3 155.7l61.1-61.1c.3 .3 .6 .7 1 1l16 16 56 56 56 56 16 16c.3 .3 .6 .6 1 1l-191 191c-10.5 10.5-24.7 16.4-39.6 16.4H97.9L41 505c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l57-57V325.3c0-14.9 5.9-29.1 16.4-39.6l43.3-43.3 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57 41.4-41.4 57 57c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6l-57-57z"/></svg>
+    </a>
+    <a href="/author/pillidentification" class="flex relative h-40 flex-col justify-end p-4 bg-white rounded-lg shadow-md hover:bg-gray-100" style="background: linear-gradient(90deg, #64a3e3 0%, #5193d6 100%);">
+        <span class="text-gray-100 text-xl">Pills</span>
+        <p class="ml-2 text-gray-200 text-3xl">{{ top_stats.pills }}</p>
+        <svg class="absolute w-32 h-32 top-[10%] right-5 ml-auto fill-gray-200" width="20px" height="20px" viewBox="0 0 576 512"><path d="M112 96c-26.5 0-48 21.5-48 48V256h96V144c0-26.5-21.5-48-48-48zM0 144C0 82.1 50.1 32 112 32s112 50.1 112 112V368c0 61.9-50.1 112-112 112S0 429.9 0 368V144zM554.9 399.4c-7.1 12.3-23.7 13.1-33.8 3.1L333.5 214.9c-10-10-9.3-26.7 3.1-33.8C360 167.7 387.1 160 416 160c88.4 0 160 71.6 160 160c0 28.9-7.7 56-21.1 79.4zm-59.5 59.5C472 472.3 444.9 480 416 480c-88.4 0-160-71.6-160-160c0-28.9 7.7-56 21.1-79.4c7.1-12.3 23.7-13.1 33.8-3.1L498.5 425.1c10 10 9.3 26.7-3.1 33.8z"/></svg>
+    </a>
+    <a href="/author/interactions" class="flex relative h-40 flex-col justify-end p-4 bg-white rounded-lg shadow-md hover:bg-gray-100" style="background: linear-gradient(90deg, #428bd9 0%, #2371c4 100%);">
+        <span class="text-gray-100 text-xl">Interactions</span>
+        <p class="ml-2 text-gray-200 text-3xl">{{ top_stats.interactions }}</p>
+        <svg fill="#ffffff"class="absolute w-32 h-32 top-[10%] right-5 ml-auto text-gray-600" viewBox="0 0 576 512"><path d="M142.4 21.9c5.6 16.8-3.5 34.9-20.2 40.5L96 71.1V192c0 53 43 96 96 96s96-43 96-96V71.1l-26.1-8.7c-16.8-5.6-25.8-23.7-20.2-40.5s23.7-25.8 40.5-20.2l26.1 8.7C334.4 19.1 352 43.5 352 71.1V192c0 77.2-54.6 141.6-127.3 156.7C231 404.6 278.4 448 336 448c61.9 0 112-50.1 112-112V265.3c-28.3-12.3-48-40.5-48-73.3c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V336c0 97.2-78.8 176-176 176c-92.9 0-168.9-71.9-175.5-163.1C87.2 334.2 32 269.6 32 192V71.1c0-27.5 17.6-52 43.8-60.7l26.1-8.7c16.8-5.6 34.9 3.5 40.5 20.2zM480 224a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"></path></svg>
+    </a>
+</section>
+<section class="grid lg:grid-cols-2 gap-5 mt-5 p-2">
+<div class="bg-gray-100 shadow-md rounded"><h3 class="text-lg font-bold text-emerald-600 p-2 border-b border-gray-300 mb-3">Top News</h3><div id="data-grid" class="flex flex-col mb-3"><div class="grid font-bold bg-gray-300 p-2 rounded-b" style="grid-template-columns: 1fr 100px;"><h2 class="text-gray-900">Title</h2><h3 class="text-center text-gray-600">Views</h3></div>{% for item in news %}<a href="/news/{{ item.id }}" target="_blank" class="grid p-2 hover:underline hover:text-[#0095FD] transition duration-300 rounded-b" style="grid-template-columns: 1fr 100px;"><span>{{ item.title|slice:":80" }}</span> <span class="inline-block text-center">{{ item.search_count }}</span></a>{% endfor %}</div></div>
+<div class="bg-gray-100 shadow-md rounded"><h3 class="text-lg font-bold text-emerald-600 p-2 border-b border-gray-300 mb-3">Top Conditions</h3><div id="data-grid" class="flex flex-col mb-3"><div class="grid font-bold bg-gray-300 p-2 rounded-b" style="grid-template-columns: 1fr 100px;"><h2 class="text-gray-900">Title</h2><h3 class="text-center text-gray-600">Views</h3></div>{% for item in condition %}<a href="/conditions/{{ item.id }}" target="_blank" class="grid p-2 hover:underline hover:text-[#0095FD] transition duration-300 rounded-b" style="grid-template-columns: 1fr 100px;"><span>{{ item.heading|slice:":80" }}</span> <span class="inline-block text-center">{{ item.search_count }}</span></a>{% endfor %}</div></div>
+<div class="bg-gray-100 shadow-md rounded"><h3 class="text-lg font-bold text-emerald-600 p-2 border-b border-gray-300 mb-3">Top Well Being</h3><div id="data-grid" class="flex flex-col mb-3"><div class="grid font-bold bg-gray-300 p-2 rounded-b" style="grid-template-columns: 1fr 100px;"><h2 class="text-gray-900">Title</h2><h3 class="text-center text-gray-600">Views</h3></div>{% for item in well_being %}<a href="/wellbeing/{{ item.id }}" target="_blank" class="grid p-2 hover:underline hover:text-[#0095FD] transition duration-300 rounded-b" style="grid-template-columns: 1fr 100px;"><span>{{ item.title|slice:":80" }}</span> <span class="inline-block text-center">{{ item.search_count }}</span></a>{% endfor %}</div></div>
+</section>
+{% endblock %}

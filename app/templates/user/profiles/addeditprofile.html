@@ -1,0 +1,56 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<style>input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {-webkit-appearance: none; margin: 0} input[type="number"] {-moz-appearance: textfield}</style>
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-80 2xl:pr-72 pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<p class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">{{ title }}</p>
+</div>
+<section class="md:grid md:grid-cols-3 lg:grid-cols-4 items-start p-4 sm:px-12 md:px-20 lg:px-16 xl:px-40 2xl:px-64 my-10 gap-2 md:gap-0 text-gray-900 select-none">
+<div class="bg-white border border-gray-200 md:border-r-0 md:rounded-tl md:rounded-bl"><div class="hidden md:block min-h-10 max-h-10 p-2 border-b border-gray-200"></div><div class="flex flex-col gap-5 p-5"><h5 class="font-semibold text-lg lg:text-xl text-center">Get started</h5><p>welcome to My Med List, the RxZee.com drug management site. <br /><br />Make a new biography for your account to begin.</p></div></div>
+<div class="bg-white md:col-span-2 lg:col-span-3 border border-gray-200 md:rounded-tr md:rounded-br">
+<div class="min-h-10 max-h-10 p-2 border-b border-gray-200"><a href="/user/profiles" class="flex items-center font-bold fill-[#105EDA] hover:fill-[#0095FD] text-[#105EDA] hover:text-[#0095FD] transition duration-300"><svg class="w-6 h-6" width="20" height="20" viewBox="0 0 18 18"><path d="M6.20837 8.91145L11.5209 3.59895L12.2646 4.3427L7.69587 8.91145L12.2646 13.4802L11.5209 14.2239L6.20837 8.91145Z"/></svg>Cancel</a></div>
+<div class="flex flex-col gap-5 p-2 xl:p-4">
+<div class="flex flex-col gap-2"><h3 class="font-semibold text-lg md:text-xl lg:text-2xl">Add your first Profile...</h3><p>For a single person, a "profile" will have a list of drugs and diseases. You can make accounts for family, friends, patients, and other people, in addition to your own.</p></div>
+<form method="post" class="flex flex-col gap-5 md:gap-8">
+{% csrf_token %}
+<div class="flex flex-col gap-1">
+    <label for="profile_name" class="font-semibold lg:text-xl">Profile name</label>
+    <input type="text" placeholder="Profile name..." name="profile_name" id="profile_name" value="{{ UserProfileData.profile_name }}" class="text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" />
+    <p class="text-gray-500 text-xs md:text-sm xl:text-base">Do not use your full name or social media username. Do not give out personal details. "Jacob," "Mama," or "Patient 19" are all good character names.</p>
+</div>
+<div class="flex flex-col gap-1">
+    <label for="profile_name" class="font-semibold lg:text-xl">Pregnancy/Lactation warnings</label>
+    <fieldset>
+        <legend class="sr-only">Pregnancy/Lactation warnings</legend>
+        <div>
+            
+            <input type="radio" name="pregnancy_lactation_warnings" id="pregnancy_lactation_warnings_disabled" value="disabled" {% if not UserProfileData.pregnancy_lactation_warnings %} checked {% endif %}>
+            <label for="pregnancy_lactation_warnings_disabled"><b>Disabled</b><span class="text-gray-500 text-xs md:text-sm xl:text-base"> - warnings about pregnancy and breastfeeding not included</span></label>
+        </div>
+        <div>
+            <input type="radio" name="pregnancy_lactation_warnings" id="pregnancy_lactation_warnings_enabled" value="enabled" {% if UserProfileData.pregnancy_lactation_warnings %} checked {% endif %}>
+            <label for="pregnancy_lactation_warnings_enabled"><b>Enabled</b><span class="text-gray-500 text-xs md:text-sm xl:text-base"> - All necessary statements about pregnancy and breastfeeding will be included in reports</span></label>
+        </div>
+    </fieldset>
+</div>
+<div class="flex flex-col gap-1">
+    <label for="emergency_contact_contact_name" class="font-semibold lg:text-xl">Emergency contact <span class="text-gray-500 text-xs md:text-sm xl:text-base">(optional)</span></label>
+    <input type="text" placeholder="Contact name..." name="emergency_contact_contact_name" id="emergency_contact_contact_name" value="{{ UserProfileData.emergency_contact_contact_name }}" class="text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" />
+    <input type="number" placeholder="Contact phone number..." name="emergency_contact_contact_phone_number" id="emergency_contact_contact_phone_number" value="{{ UserProfileData.emergency_contact_contact_phone_number }}" class="text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" maxlength="15" />
+</div>
+<div class="flex flex-col gap-1">
+    <label for="primary_physician_contact_name" class="font-semibold lg:text-xl">Primary physician <span class="text-gray-500 text-xs md:text-sm xl:text-base">(optional)</span></label>
+    <input type="text" placeholder="Physician name..." name="primary_physician_contact_name" id="primary_physician_contact_name" value="{{ UserProfileData.primary_physician_contact_name }}" class="text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" />
+    <input type="number" placeholder="Physician phone number..." name="primary_physician_contact_phone_number" id="primary_physician_contact_phone_number" value="{{ UserProfileData.primary_physician_contact_phone_number }}" class="text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded" maxlength="15" />
+</div>
+<div class="flex flex-col gap-1">
+    <label for="other_details" class="font-semibold lg:text-xl">Other details <span class="text-gray-500 text-xs md:text-sm xl:text-base">(optional)</span></label>
+    <textarea name="other_details" id="other_details" placeholder="Add additional information..." class="h-40 xl:h-60 text-gray-900 bg-gray-100 p-2 border border-gray-300 focus:border-gray-900 transition duration-300 outline-none rounded resize-none">{{ UserProfileData.other_details }}</textarea>
+    <p class="text-gray-500 text-xs md:text-sm xl:text-base mt-2">Other doctors, experts, pharmacists, medical history, blood type, etc. are examples.</p>
+</div>
+<button class="w-fit text-gray-100 bg-[#3455A3] px-4 py-2 border border-[#3455A3] rounded-md hover:bg-[#3760B5] transition duration-300">Save</button>
+</form>
+</div>
+</div>
+</section>
+{% endblock %}

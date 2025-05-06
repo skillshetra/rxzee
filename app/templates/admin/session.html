@@ -1,0 +1,29 @@
+{% extends 'admin/components/index.html' %}
+{% block content %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.1/xlsx.full.min.js"></script>
+<div class="flex flex-col w-full bg-gray-100 gap-2 rounded">
+<div class="flex justify-between items-center gap-2 p-4 border-b border-gray-400 rounded">
+<h3 class="md:text-xl font-bold" style="color: #10b981; background: #10b981; background: linear-gradient(90deg, #118a61 15%, rgba(11, 139, 123, 1) 49%, rgba(8, 122, 125, 1) 72%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;">Session</h3>
+</div>
+<div class="flex flex-col bg-[#f9fafb] border border-gray-400 text-xs ms:text-sm xl:text-base">
+<div class="grid md:grid-cols-2 w-full mx-auto bg-white rounded-lg shadow-lg gap-5 p-6">
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Session Key:</strong><p>{{ session.session_key }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">First Name:</strong><p>{{ session.user__first_name }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Last Name:</strong><p>{{ session.user__last_name }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Username:</strong><p>{{ session.user__username }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Email:</strong><p>{{ session.user__email }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Last Login:</strong><p>{{ session.user__last_login }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Category:</strong><p>{{ session.user__category }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">IP Address:</strong><p>{{ session.ip_address }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Country:</strong><p>{{ session.country }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Region:</strong><p>{{ session.region }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">City:</strong><p>{{ session.city }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Zip Code:</strong><p>{{ session.zip_code }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Session Expiration:</strong><p>{{ session.session_expiration }}</p></div>
+<div class="flex items-center gap-2"><strong class="text-emerald-600 text-lg">Active:</strong><p>{% if session.is_active %} <span class="text-emerald-600 bg-emerald-200 p-2 rounded-lg">Active</span> {% else %} <span class="text-[#ff0000] bg-[#ff000020] p-2 rounded-lg">Inactive</span>{% endif %}</p></div>
+<div class="flex flex-col"><strong class="text-emerald-600 text-lg">User Agent:</strong><p>{{ session.user_agent }}</p></div>
+{% if session.is_active %}<div><a href="/{{ ADMIN_PATH }}force_logout/{{ session.session_key }}" class="text-[#ff0000] font-bold bg-[#ff000020] p-2 rounded hover:bg-[#ff000040] transition duration-300">Force Logout</a></div>{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

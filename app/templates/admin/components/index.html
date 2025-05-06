@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} - Rx Zee</title>
+<link rel="shortcut icon" href="{% static 'favicon.svg' %}" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'RxZee.ttf' %}" type="font/ttf">
+<link rel="stylesheet" href="{% static 'rxzee.css' %}">
+<link rel="stylesheet" href="{% static 'content.css' %}">
+<style>@media screen and (max-width:1000px) {#sidebar {transform: translateX(-100%)}} #sidebar::-webkit-scrollbar {width: 2px; background: transparent} #sidebar::-webkit-scrollbar-thumb {background: #34d399; border-radius: 50px}</style>
+</head>
+<body class="flex w-dvw h-dvh bg-gray-100 overflow-hidden" style='font-family: "RxZee", sans-serif;'>
+{% include 'admin/components/Sidebar.html' %}
+<main class="min-h-dvh max-h-dvh w-full bg-gray-200 overflow-y-auto overflow-x-hidden">
+<header class="flex justify-between bg-gray-200 border-b border-gray-400 p-4 select-none">
+<div class="left"><svg id="show-nav1" class="block lg:hidden w-6 h-6 cursor-pointer" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg><a href="/{{ ADMIN_PATH }}" class="lg:block hidden"><img class="p-2 select-none" src="{% static 'RxZee.svg' %}" style="min-width: 150px; max-width: 150px;" alt="RxZee" /></a></div>
+<div class="flex justify-between items-center gap-8 px-3">
+<a class="flex font-bold gap-1 border text-[#666666] border-[#666666] rounded py-1 px-2 hover:text-black hover:border-black transition duration-300" href="/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M11.5 3a17 17 0 0 0 0 18"></path><path d="M12.5 3a17 17 0 0 1 0 18"></path></svg> View website </a>
+<a class="flex font-bold gap-1 border fill-[#ff000070] text-[#ff000070] border-[#ff000070] rounded py-1 px-2 hover:fill-[#ff0000] hover:text-[#ff0000] hover:border-[#ff0000] transition duration-300" href="/logout"><svg width="24" height="24" viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg> Logout</a>
+</div>
+</header>
+<section class="w-full p-4">{% block content %} {% endblock %}</section>
+</main>
+</body>
+<script>document.querySelector("#show-nav1").addEventListener("click", () => {if (document.querySelector("#sidebar").style.transform === "" || document.querySelector("#sidebar").style.transform === "translateX(-100%)") {document.querySelector("#sidebar").style.transform = "translateX(0%)"} else {document.querySelector("#sidebar").style.transform = "translateX(-100%)"}});</script>
+<script>document.querySelector("#show-nav2").addEventListener("click", () => {if (document.querySelector("#sidebar").style.transform === "" || document.querySelector("#sidebar").style.transform === "translateX(-100%)") {document.querySelector("#sidebar").style.transform = "translateX(0%)"} else {document.querySelector("#sidebar").style.transform = "translateX(-100%)"}});</script>
+</html>

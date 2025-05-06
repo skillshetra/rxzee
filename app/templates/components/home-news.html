@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-8">
+    <h3 class="w-full border-b-2 font-bold border-[#d1d5db] text-lg sm:text-xl md:text-3xl xl:text-4xl">Today's Top Stories</h3>
+    <a href="/news/{{ item.permalink }}" class="flex flex-col md:flex-row justify-center items-center gap-6">
+        <img src="/images/{{ top_news.featured_image }}" alt="Rx Zee" class="min-w-full md:min-w-72 lg:min-w-96  xl:min-w-[400px] rounded" />
+        <div>
+            <h2 class="font-bold text-2xl lg:text-3xl">{{ top_news.title }}</h2>
+            <p class="text-lg">{{ top_news.content|slice:":250"|safe }}</p>
+        </div>
+    </a>
+<hr class="border-[1.5px] border-[#08080870] rounded" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        {% for item in news %}
+        <a href="/news/{{ item.permalink }}" class="flex items-center gap-6">
+            <img class="w-36 rounded" src="/images/{{ item.featured_image }}" alt="Rx Zee" />
+            <h6 class="font-bold">{{ item.title|slice:":50" }}</h6>
+        </a>
+        {% endfor %}
+    </div>
+</div>
