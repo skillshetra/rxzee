@@ -1,0 +1,46 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load custom_filters %}
+<div class="flex flex-col min-h-60 max-h-60 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">{{ title }}</h1>
+    <p class="w-full text-gray-800 text-center text-xs md:text-sm mt-2">{{ sub_category|default:title }} Information from a reliable source</p>
+</div>
+<section class="flex flex-col px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] py-5 md:py-10 gap-10 md:gap-20">
+<div class="flex flex-col gap-5 md:gap-10">
+<div class="flex relative w-full justify-center items-center overflow-hidden">
+    <svg id="prev" class="min-w-6 min-h-6 max-w-6 max-h-6 cursor-pointer" width="32" height="61" viewBox="0 0 32 61" fill="#0095FD"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.32411 28.8594L19.1022 14.3617L22.726 17.8056L10.6699 30.4914L23.3557 42.5476L19.9118 46.1714L5.41406 32.3933C4.9336 31.9365 4.65423 31.3077 4.63736 30.645C4.62049 29.9823 4.86752 29.34 5.32411 28.8594Z" fill="#0095FD"/></svg>
+    <div id="scroller" class="scroller flex items-center font-bold whitespace-nowrap gap-5 overflow-x-scroll overflow-y-hidden">{% for sub_category_item in sub_categories %}<a href="?sub_category={{ sub_category_item|condition_link }}" class="text-[#0095FD] hover:underline {% if sub_category_item == sub_category %}underline text-lg{% endif %}">{{ sub_category_item }}</a>{% endfor %}</div>
+    <svg id="next" class="min-w-6 min-h-6 max-w-6 max-h-6 cursor-pointer" width="32" height="61" viewBox="0 0 32 61" fill="#0095FD"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.1511 32.1494L12.0086 46.2919L8.47357 42.7569L20.8486 30.3819L8.47357 18.0069L12.0086 14.4719L26.1511 28.6144C26.6197 29.0832 26.883 29.719 26.883 30.3819C26.883 31.0448 26.6197 31.6806 26.1511 32.1494Z" fill="#0095FD"/></svg>
+</div>
+<div class="flex flex-col gap-5">
+    {% for article in articles %}
+    <div class="grid bg-white md:max-h-60 md:grid-cols-3 2xl:grid-cols-5 gap-2 md:gap-5 p-2 border border-[#A3CCD9] rounded shadow-lg">
+        <img src="/images/{{ article.featured_image }}" alt="{{ article.heading }}" class="rounded-md min-w-full max-h-60 sm:max-h-72 md:max-h-52" />
+        <div class="flex flex-col justify-between gap-1 md:col-span-2 2xl:col-span-4">
+            <h3 class="font-bold text-lg md:text-xl xl:text-2xl">{{ article.heading }}</h3>
+            <div id="content" class="max-w-full md:max-h-fit overflow-hidden text-ellipsis line-clamp-4 xl:line-clamp-5">{{ article.content|safe|slice:":400" }}</div>
+            <a href="{{ article.permalink }}" class="w-fit font-bold text-lg bg-[#A3CCD9] p-2 rounded ml-auto">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% if page_numbers|length > 1 %}
+<div class="flex relative w-full justify-center items-center gap-3 overflow-hidden">
+    <svg id="prev-1" class="min-w-6 min-h-6 max-w-6 max-h-6 cursor-pointer" width="47" height="62" viewBox="0 0 47 62" fill="#0095FD"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.3193 28.8594L34.0973 14.3616L37.7211 17.8055L25.665 30.4914L38.3509 42.5475L34.907 46.1713L20.4092 32.3932C19.9288 31.9365 19.6494 31.3076 19.6325 30.6449C19.6156 29.9822 19.8627 29.34 20.3193 28.8594Z" fill="#0095FD"/><path fill-rule="evenodd" clip-rule="evenodd" d="M5.32408 29.2412L19.1022 14.7434L22.726 18.1874L10.6698 30.8732L23.3557 42.9293L19.9118 46.5531L5.41403 32.7751C4.93357 32.3183 4.65419 31.6895 4.63733 31.0268C4.62046 30.3641 4.86749 29.7218 5.32408 29.2412Z" fill="#0095FD"/></svg>
+    <div id="scroller-1" class="scroller flex max-w-[225px] items-center whitespace-nowrap gap-5 overflow-x-scroll overflow-y-hidden">{% for page in page_numbers %}<a href="#" class="flex justify-center items-center min-w-10 min-h-10 max-w-10 max-h-10 text-[#0095FD] border border-[#A3CCD9] p-2 rounded-full hover:bg-[#A3CCD9] transition duration-300" onclick="window.location.href='{{ request.path }}?'+new URLSearchParams({...Object.fromEntries(new URLSearchParams(window.location.search)), page: {{ page }}}).toString(); return false;">{{ page }}</a>{% endfor %}</div>
+    <svg id="next-1" class=" min-w-6 min-h-6 max-w-6 max-h-6 cursor-pointer" width="45" height="60" viewBox="0 0 45 60" fill="#0095FD"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.3925 31.7775L11.25 45.92L7.715 42.385L20.09 30.01L7.715 17.635L11.25 14.1L25.3925 28.2425C25.8612 28.7113 26.1245 29.3471 26.1245 30.01C26.1245 30.6729 25.8612 31.3087 25.3925 31.7775Z" fill="#0095FD"/><path fill-rule="evenodd" clip-rule="evenodd" d="M40.3925 31.7775L26.25 45.92L22.715 42.385L35.09 30.01L22.715 17.635L26.25 14.1L40.3925 28.2425C40.8612 28.7113 41.1245 29.3471 41.1245 30.01C41.1245 30.6729 40.8612 31.3087 40.3925 31.7775Z" fill="#0095FD"/></svg>
+</div>
+{% endif %}
+</div>
+</div>
+<div class="flex flex-col justify-center items-center sm:px-5 md:px-10">
+    <div class="flex w-full max-w-[500px] bg-[#A3CCD9] relative min-h-1 max-h-1 border border-[#A3CCD9] before:absolute before:-top-3 before:-left-5 before:content-[''] before:block before:bg-[#A3CCD9] before:max-w-6 before:min-w-6 before:min-h-6 before:max-h-6 before:rounded-full after:content-[''] after:block after:bg-[#A3CCD9] after:max-w-6 after:min-w-6 after:min-h-6 after:max-h-6 after:rounded-full  after:absolute after:-top-3 after:-right-5"></div>
+    <h2 class="font-bold text-xl md:text-2xl xl:text-3xl mt-5">News Related ADHD</h2>
+    <div class="grid md:grid-cols-2 gap-3 md:gap-5 mt-5">
+        {% for item in news %}<div class="flex flex-col gap-3 p-2 bg-white border-2 border-[#A3CCD9] rounded shadow-lg"><h3 class="font-bold text-lg md:text-xl xl:text-2xl">{{ item.title }}</h3><p class="text-justify">{{ item.seo_description }}</p></div>{% endfor %}
+    </div>
+</div>
+</section>
+<script>document.querySelectorAll('#next').forEach(button => {button.addEventListener('click', () => {document.querySelector("#scroller").scrollBy({left: 100,behavior: 'smooth'})})});document.querySelectorAll('#prev').forEach(button => {button.addEventListener('click', () => {document.querySelector("#scroller").scrollBy({left: -100,behavior: 'smooth'})})});document.querySelectorAll('#next-1').forEach(button => {button.addEventListener('click', () => {document.querySelector("#scroller-1").scrollBy({left: 100, behavior: 'smooth'})})});document.querySelectorAll('#prev-1').forEach(button => {button.addEventListener('click', () => {document.querySelector("#scroller-1").scrollBy({left: -100,behavior: 'smooth'})})});</script>
+{% endblock %}

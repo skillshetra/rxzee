@@ -1,0 +1,20 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load custom_filters %}
+<div class="flex flex-col min-h-60 max-h-60 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">{{ title }}</h1>
+    <p class="w-full text-gray-600 text-center text-xs md:text-sm mt-2">{{ sub_category|default:title }} Information from a reliable source</p>
+</div>
+<section class="flex flex-col px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] py-5 md:py-10 gap-10">
+<div class="flex flex-col gap-3"><h3 class="font-bold text-2xl xl:text-3xl 2xl:text-4xl pl-5">Most recent health news</h3><div class="flex max-w-[90%] min-w-[90%] bg-[#A3CCD9] relative min-h-1 max-h-1 border border-[#A3CCD9] before:absolute before:-top-3 before:-left-5 before:content-[''] before:block before:bg-[#A3CCD9] before:max-w-6 before:min-w-6 before:min-h-6 before:max-h-6 before:rounded-full after:content-[''] after:block after:bg-[#A3CCD9] after:max-w-6 after:min-w-6 after:min-h-6 after:max-h-6 after:rounded-full  after:absolute after:-top-3 after:-right-5 mx-4"></div></div>
+{% if approved_news %}
+<div class="flex flex-col gap-5 md:gap-10">
+<div class="grid md:grid-cols-2 gap-3 md:gap-5 xl:gap-8 border-4 border-[#A3CCD9] rounded-md overflow-hidden"><img src="/images/{{ approved_news.0.featured_image }}" alt="{{ approved_news.0.title }}"><a class="flex flex-col gap-2 p-2" href="/news/{{ approved_news.0.permalink }}"><h5 class="font-bold text-lg lg:text-xl hover:text-[#0095FD] transition duration-300">{{ approved_news.0.title }}</h5><div id="content" class="max-w-full md:max-h-fit overflow-hidden text-ellipsis line-clamp-3">{{ approved_news.0.content|safe|slice:":400" }}<i>Last Updated: {{ approved_news.0.last_updated }}</i></div></a></div>
+<div class="grid md:grid-cols-3 gap-3 lg:gap-5 2xl:gap-8">{% for news_item in approved_news|slice_items:"1:4" %}<div class="flex flex-col gap-2 pb-2 border-4 border-[#A3CCD9] rounded-md overflow-hidden"><img src="/images/{{ news_item.featured_image }}" alt="{{ news_item.title }}" class="w-full" /><a href="/news/{{ news_item.permalink }}" class="font-bold text-lg lg:text-xl hover:text-[#0095FD] transition duration-300 p-2">{{ news_item.title }}</a></div>{% endfor %}</div>
+<div class="grid md:grid-cols-2 gap-3 md:gap-5 xl:gap-8 2xl:gap-10">{% for news_item in approved_news|slice_items:"4:" %}<a href="/news/{{ news_item.permalink }}" class="p-2 border-2 border-[#A3CCD9] rounded-md overflow-hidden"><h5 class="font-bold text-lg lg:text-xl hover:text-[#0095FD] transition duration-300">{{ news_item.title }}</h5><div id="content" class="max-w-full md:max-h-fit overflow-hidden text-ellipsis line-clamp-3">{{ news_item.content|safe|slice:":400" }}</div></a>{% endfor %}</div>
+</div>
+{% endif %}
+<div class="flex max-w-[250px] min-w-[250px] sm:max-w-[300px] sm:min-w-[300px] md:max-w-[500px] md:min-w-[500px] bg-[#A3CCD9] relative min-h-1 max-h-1 border border-[#A3CCD9] before:absolute before:-top-3 before:-left-5 before:content-[''] before:block before:bg-[#A3CCD9] before:max-w-6 before:min-w-6 before:min-h-6 before:max-h-6 before:rounded-full after:content-[''] after:block after:bg-[#A3CCD9] after:max-w-6 after:min-w-6 after:min-h-6 after:max-h-6 after:rounded-full  after:absolute after:-top-3 after:-right-5 mx-auto"></div>
+</section>
+{% endblock %}

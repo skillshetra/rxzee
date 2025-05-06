@@ -1,0 +1,47 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col min-h-60 max-h-60 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">Sitemap</h1>
+</div>
+<section class="flex flex-col py-10 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] gap-10">
+<div class="flex flex-col gap-5">
+    <h3 class="text-lg sm:text-xl xl:text-2xl 2xl:text-3xl pb-2 border-b border-gray-300">Health Conditions</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 lg:text-lg">{% for condition in conditions %} <a href="/conditions/category/{{ condition }}" class="text-gray-700 hover:text-[#0095FD]">{{ condition }}</a>{% endfor %}</div>
+</div>
+<div class="flex flex-col gap-5">
+    <h3 class="text-lg sm:text-xl xl:text-2xl 2xl:text-3xl pb-2 border-b border-gray-300">Well Being</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 lg:text-lg">{% for item in well_being %} <a href="/wellbeing/category/{{ item }}" class="text-gray-700 hover:text-[#0095FD]">{{ item }}</a>{% endfor %}</div>
+</div>
+<div class="flex flex-col gap-5">
+    <h3 class="text-lg sm:text-xl xl:text-2xl 2xl:text-3xl pb-2 border-b border-gray-300">Top Drugs</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 lg:text-lg">{% for drug in drugs %} <a href="/drugs/{{ drug.id }}" class="text-gray-700 hover:text-[#0095FD]">{{ drug.name }}</a>{% endfor %}</div>
+</div>
+<div class="flex flex-col gap-5">
+    <h3 class="text-lg sm:text-xl xl:text-2xl 2xl:text-3xl pb-2 border-b border-gray-300">Top Vitamins</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 lg:text-lg">{% for vitamin in vitamins %} <a href="/vitaminsandsupplements/{{ vitamin.id }}" class="text-gray-700 hover:text-[#0095FD]">{{ vitamin.name }}</a>{% endfor %}</div>
+</div>
+<div class="flex flex-col gap-5">
+    <h3 class="text-lg sm:text-xl xl:text-2xl 2xl:text-3xl pb-2 border-b border-gray-300">About RxZee</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
+        <a href="/aboutus" class="text-gray-700 hover:text-[#0095FD]">About Rx Zee.com</a>
+        <a href="/healthinformationpolicy" class="text-gray-700 hover:text-[#0095FD]">Health Information Policy</a>
+        <a href="/careers" class="text-gray-700 hover:text-[#0095FD]">Careers</a>
+        <a href="/newsletter" class="text-gray-700 hover:text-[#0095FD]">Newsletter</a>
+        <a href="/corporate" class="text-gray-700 hover:text-[#0095FD]">Corporate</a>
+        <a href="/contentintegrity" class="text-gray-700 hover:text-[#0095FD]">Content Integrity</a>
+        <a href="/helpcenter" class="text-gray-700 hover:text-[#0095FD]">Help center</a>
+        <a href="/sitemap" class="text-gray-700 hover:text-[#0095FD]">Sitemap</a>
+        <a href="/contactus" class="text-gray-700 hover:text-[#0095FD]">Conatct Us</a>
+        <a href="/termofuse" class="text-gray-700 hover:text-[#0095FD]">Term Of Use</a>
+        <a href="/termsconditions" class="text-gray-700 hover:text-[#0095FD]">Terms & Conditions</a>
+        <a href="/advertisewithus" class="text-gray-700 hover:text-[#0095FD]">Advertise with Us</a>
+        <a href="/editorialpolicy" class="text-gray-700 hover:text-[#0095FD]">Editorial Policy</a>
+        <a href="/privacypolicy" class="text-gray-700 hover:text-[#0095FD]">Privacy Policy</a>
+        <a href="/cookiepolicy" class="text-gray-700 hover:text-[#0095FD]">Cookie Policy</a>
+        <a href="/advertisingpolicy" class="text-gray-700 hover:text-[#0095FD]">Advertising Policy</a>
+        <a href="/correctionpolicy" class="text-gray-700 hover:text-[#0095FD]">Correction Policy</a>
+    </div>
+</div>
+</section>
+{% endblock %}

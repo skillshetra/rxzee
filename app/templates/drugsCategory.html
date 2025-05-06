@@ -1,0 +1,39 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+<style>#scroll-container::-webkit-scrollbar, #scroll-container-1::-webkit-scrollbar{display: none;}</style>
+<div class="flex flex-col min-h-60 max-h-60, lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">Drugs & Medications A-Z</h1>
+    <p class="w-full text-gray-800 text-center text-xs md:text-sm mt-2">Medication and prescription drugs information from a reliable source</p>
+</div>
+<section class="grid items-start md:grid-cols-3 xl:grid-cols-4 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] gap-5 xl:gap-10 2xl:gap-20">
+<div class="md:col-span-2 xl:col-span-3 relative">
+<div class="flex flex-col max-w-[92dvw] sm:max-w-[85dvw] bg-[#B5D6E0] gap-5 transform translate-y-[-50px] rounded px-2 py-5 select-none" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2)">
+    <div class="flex flex-col relative">
+        <div class="flex relative bg-gray-50 border border-gray-400 rounded"><input id="search" type="text" placeholder="search medicine by name.." class="bg-transparent w-full outline-gray-600 pl-2 pr-6 py-2" /><svg width="25px" height="25px" class="absolute fill-gray-400 top-2 right-3" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
+        <div id="search-result" class="hidden flex absolute top-[105%] flex-col w-full max-h-[500px] font-bold bg-gray-200 text-sm md:text-base xl:text-lg rounded overflow-x-hidden overflow-y-auto z-20"></div>
+    </div>
+    <p class="text-center font-bold sm:text-lg sm:text-xl md:text-2xl xl:text-3xl">Find Medications by Alphabet</p>
+    <div class="flex justify-between md:items-center flex-wrap p-2"><a href="/drugs/off-market/a" class="font-bold text-lg hover:underline text-[#0095FD] transition duration-300">Find Off-Market Medications</a><a href="/drugs/conditions" class="font-bold text-lg hover:underline text-[#0095FD] transition duration-300">Search Medications by Condition</a></div>
+    <div class="flex w-full items-center gap-2 py-2 px-3 mb-5">
+        <svg id="left-arrow" class="min-w-5 min-h-5 max-w-5 max-h-5 fill-gray-600 cursor-pointer" viewBox="0 0 320 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+        <div id="scroll-container" class="flex w-full gap-2 overflow-x-scroll overflow-y-hidden">{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}<a href="/drugs/alpha/{{ letter }}" class="flex justify-center items-center text-lg min-w-10 min-h-10 {% if letter == slug %}text-gray-200 bg-gray-800{% else %}bg-gray-200 hover:bg-gray-300{% endif %} transition duration-300 rounded-full font-bold">{{ letter | upper }}</a>{% endfor %}<a href="/drugs/alpha/0-9" class="flex justify-center items-center text-lg min-w-12 min-h-8 bg-gray-200 hover:bg-gray-300 transition duration-300 rounded font-bold">0-9</a></div>
+        <svg id="right-arrow" class="min-w-5 min-h-5 max-w-5 max-h-5 fill-gray-600 cursor-pointer" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+    </div>
+    {% if not hidden %}
+    <div class="flex w-full items-center gap-2 py-2 px-3">
+        <svg id="left-arrow-1" class="min-w-5 min-h-5 max-w-5 max-h-5 fill-gray-600 cursor-pointer" viewBox="0 0 320 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
+        <div id="scroll-container-1" class="flex w-full gap-2 overflow-x-scroll overflow-y-hidden">{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}<a href="{% if letter in allSecondAvailable %}/drugs/alpha/{{ slug }}{{ letter }}{% else %}#{% endif %}" class="flex justify-center items-center text-lg min-w-10 min-h-10 bg-gray-200 {% if letter in allSecondAvailable %}hover:bg-gray-300{% else %}text-gray-400{% endif %} transition duration-300 rounded-full font-bold">{{ slug | upper }}{{ letter }}</a>{% endfor %}</div>
+        <svg id="right-arrow-1" class="min-w-5 min-h-5 max-w-5 max-h-5 fill-gray-600 cursor-pointer" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
+    </div>
+    {% endif %}
+</div>
+<h3 class="w-full font-bold text-center sm:text-lg md:text-xl lg:text-3xl xl:text-4xl mt-14 mb-5">Drugs starting with the letter ‘{{ slug }}’</h3>
+<div class="grid min-h-20 w-full font-semibold sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-8 bg-[#B5D6E0] rounded-t p-5 mb-10">{% for drug in drugs %}<a class="hover:text-[#0095FD] transition duration-300 truncate md:whitespace-normal break-words" href="/{{ drug.permalink }}">{{ drug.name }}</a>{% endfor %}</div>
+</div>
+{% include 'components/sidewidget.html' %}
+</section>
+{% if not hidden %}<script>document.getElementById('right-arrow-1').addEventListener('click', () => {document.getElementById('scroll-container-1').scrollBy({left: 100, behavior: 'smooth'})});document.getElementById('left-arrow-1').addEventListener('click', () => {document.getElementById('scroll-container-1').scrollBy({left: -100, behavior: 'smooth'})});</script>{% endif %}
+<script>document.getElementById('left-arrow').addEventListener('click', () => {document.getElementById('scroll-container').scrollBy({left: -100, behavior: 'smooth'})}); document.getElementById('right-arrow').addEventListener('click', () => {document.getElementById('scroll-container').scrollBy({left: 100, behavior: 'smooth'})}); document.querySelector("#search").addEventListener("keyup", (event)=>{fetch(`/specific_database_search?database=drugs&parameter=${encodeURIComponent(event.target.value)}`).then(response => response.json()).then(data => {document.querySelector('#search-result').classList.remove('hidden');document.querySelector('#search-result').innerHTML = "";if (data) {document.querySelector('#search-result').classList.remove('hidden');data.forEach(drug => {document.querySelector('#search-result').appendChild(Object.assign(document.createElement('a'), {href: drug.permalink, className: 'p-2 hover:bg-gray-100 transition duration-300 rounded', textContent: drug.name}))});} else {document.querySelector('#search-result').classList.add('hidden')}}).catch()});</script>
+{% endblock %}

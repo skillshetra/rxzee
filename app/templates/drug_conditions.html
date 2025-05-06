@@ -1,0 +1,39 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">Drugs & Medications A-Z</h1>
+    <p class="w-full text-gray-800 text-center text-xs md:text-sm mt-2">Medication and prescription drugs information from a reliable source</p>
+</div>
+<section class="grid items-start md:grid-cols-3 xl:grid-cols-4 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] gap-5 xl:gap-10 2xl:gap-20">
+<div class="md:col-span-2 xl:col-span-3 relative">
+    <div class="flex flex-col bg-[#B5D6E0] gap-5 transform translate-y-[-50px] rounded px-2 py-5" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2)">
+        <div class="flex flex-col relative">
+            <div class="flex relative bg-gray-50 border border-gray-400 rounded"><input id="search" type="text" placeholder="search medicine by condition.." class="bg-transparent w-full outline-gray-600 pl-2 pr-6 py-2" /><svg width="25px" height="25px" class="absolute fill-gray-400 top-2 right-3" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg></div>
+            <div id="search-result" class="hidden flex absolute top-[105%] flex-col w-full max-h-[500px] font-bold bg-gray-200 text-sm md:text-base xl:text-lg rounded overflow-x-hidden overflow-y-auto"></div>
+        </div>
+        <p class="text-center font-bold sm:text-lg sm:text-xl md:text-2xl xl:text-3xl">Find Medications by Alphabet</p>
+        <div class="flex justify-between md:items-center flex-wrap p-2"><a href="/drugs/off-market/a" class="font-bold text-lg hover:underline text-[#0095FD] transition duration-300">Find Off-Market Medications</a><a href="/drugs" class="font-bold text-lg hover:underline text-[#0095FD] transition duration-300">Search Medications by Name</a></div>
+    </div>
+    <div class="flex flex-wrap gap-2 bg-gray-100 font-semibold md:text-lg rounded px-2 py-5">{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}<a href="/drugs/conditions/alpha/{{ letter }}" class="flex w-10 h-10 md:w-12 md:h-12 justify-center items-center bg-gray-200 rounded-full hover:bg-gray-300 transition duration-300 {% if slug == letter %}bg-gray-400{% endif %}">{{ letter|upper }}</a>{% endfor %}<a href="/drugs/conditions/alpha/0-9" class="flex w-14 h-10 md:w-16 md:h-12 justify-center items-center bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-300 {% if slug == '0-9' %}bg-gray-400{% endif %}">0-9</a></div>
+    {% if conditions %}<div class="flex min-h-96 flex-col gap-10 bg-[#B5D6E0] rounded-t p-5"><h3 class="w-full text-center font-bold sm:text-xl md:text-2xl xl:text-3xl">Most frequently searched conditions</h3><div class="grid w-full font-semibold sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-8">{% for condition in conditions %}<a href="?condition={{ condition|condition_link }}" class="hover:text-[#0095FD] transition duration-300 truncate md:whitespace-normal break-words">{{ condition }}</a>{% endfor %}</div></div>{% endif %}
+    {% if drugs %}
+    <div class="flex min-h-96 flex-col gap-10 bg-[#B5D6E0] rounded-t p-5"><h3 class="w-full text-center font-bold sm:text-xl md:text-2xl xl:text-3xl">{{ drugs|length }} drugs found with this condition</h3>
+        <div class="flex flex-col gap-4 p-2">
+            <div style="display: grid; grid-template-columns: 1fr 100px 30px; gap: 5px;">
+                <span class="text-lg font-bold">Name</span>
+                <span class="text-lg font-bold">Label</span>
+                <span class="text-lg font-bold">Type</span>
+            </div>
+            {% for drug in drugs %}<div style="display: grid; grid-template-columns: 1fr 100px 30px; gap: 5px;"><a href="/{{ drug.permalink }}" class="hover:underline text-[#0095FD] font-bold">{{ drug.name }}</a><span>{{ drug.label }}</span><span>{{ drug.type }}</span></div>{% endfor %}
+        </div>
+</div>
+</div>
+{% endif %}
+</div>
+{% include 'components/sidewidget.html' %}
+</section>
+<script>document.querySelector("#search").addEventListener("input", (event)=>{fetch(`/specific_database_search?database=drugscondition&parameter=${encodeURIComponent(event.target.value)}`).then(response => response.json()).then(data => {document.querySelector('#search-result').classList.remove('hidden');document.querySelector('#search-result').innerHTML = "";if (data) {document.querySelector('#search-result').classList.remove('hidden');data.forEach(condition => {document.querySelector('#search-result').appendChild(Object.assign(document.createElement('a'), {href: "?condition="+condition.replace(/ /g, '-'), className: 'p-2 hover:bg-gray-100 transition duration-300 rounded', textContent: condition}))})} else {document.querySelector('#search-result').classList.add('hidden')}}).catch()})</script>
+{% endblock %}

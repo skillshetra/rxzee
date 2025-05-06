@@ -1,0 +1,29 @@
+{% extends 'components/index.html' %}
+{% block content %}
+<div class="flex flex-col w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] 2xl:pr-72 pt-5 pb-20 select-none">
+<div id="breadcrumbs" class="flex flex-wrap text-xs sm:text-base md:text-lg items-center gap-2"><div class="flex gap-2 items-center"><a href="/" class="text-gray-700 hover:text-gray-950 transition duration-300">Home</a> <span> > </span></div>{% if title == "Not Found" %}<div class="flex gap-2 items-center"><a href="/" class="text-gray-700 hover:text-gray-950 transition duration-300">Not Found</a></div>{% endif %}</div>
+<h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl mt-14">{{ title }}</h1>
+<p class="w-full text-gray-800 text-center text-xs md:text-sm mt-2">We're sorry, but the page you were looking for is not here.</p>
+</div>
+<section class="flex flex-col max-w-[600px] min-w-full justify-center items-center px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] 2xl:pr-72 py-10 mx-auto">
+<h1 class="font-bold text-center sm:text-lg md:text-xl lg:text-2xl mb-5">We're sorry, but the page you were looking for is not here.</h1>
+{% if title == "Not Found" %}<svg class="w-full" width="863" height="383" viewBox="0 0 863 383" fill="none"><circle cx="452.41" cy="213.41" r="20" transform="rotate(-90 452.41 213.41)" fill="#0095FD"/><circle cx="435.41" cy="213.41" r="20" transform="rotate(-90 435.41 213.41)" fill="#0095FD"/><path d="M437.589 204.064C440.576 199.374 447.424 199.374 450.411 204.064V204.064C453.635 209.124 450 215.75 444 215.75V215.75C438 215.75 434.365 209.124 437.589 204.064V204.064Z" fill="#A3CCD9"/><circle cx="447.551" cy="211.551" r="2.5" transform="rotate(-91.186 447.551 211.551)" fill="#0095FD"/><circle cx="411" cy="213" r="20" transform="rotate(-90 411 213)" fill="#0095FD"/><path d="M420.071 221.445C415.381 218.458 415.381 211.611 420.071 208.623V208.623C425.131 205.399 431.757 209.034 431.757 215.034V215.034C431.757 221.034 425.131 224.669 420.071 221.445V221.445Z" fill="#A3CCD9"/><circle cx="421.52" cy="218.545" r="2.5" transform="rotate(-90 421.52 218.545)" fill="#0095FD"/><path d="M232.905 25.9023V246.605H274.898V304.223H232.905V376H162.593V304.223H10.005V243.92C23.5141 228.783 37.5115 212.263 51.9972 194.359C66.4829 176.293 80.4803 157.738 93.9894 138.695C107.498 119.652 120.031 100.528 131.587 81.3223C143.306 61.9538 153.234 43.4805 161.372 25.9023H232.905ZM79.0968 246.605H162.593V124.291C156.896 134.87 150.711 145.613 144.038 156.518C137.365 167.26 130.366 177.921 123.042 188.5C115.718 198.917 108.312 209.089 100.825 219.018C93.3383 228.783 86.0955 237.979 79.0968 246.605ZM807.341 25.9023V246.605H849.333V304.223H807.341V376H737.028V304.223H584.44V243.92C597.949 228.783 611.947 212.263 626.432 194.359C640.918 176.293 654.916 157.738 668.425 138.695C681.934 119.652 694.466 100.528 706.022 81.3223C717.741 61.9538 727.669 43.4805 735.807 25.9023H807.341ZM653.532 246.605H737.028V124.291C731.332 134.87 725.147 145.613 718.474 156.518C711.8 167.26 704.802 177.921 697.477 188.5C690.153 198.917 682.748 209.089 675.261 219.018C667.774 228.783 660.531 237.979 653.532 246.605Z" fill="#0095FD"/><path d="M429.547 382.104C346.214 382.104 304.547 323.591 304.547 206.566C304.547 145.857 315.777 99.6328 338.238 67.8945C360.862 35.9935 393.577 20.043 436.383 20.043C517.763 20.043 558.453 79.5319 558.453 198.51C558.453 257.755 547.304 303.165 525.006 334.74C502.87 366.316 471.051 382.104 429.547 382.104ZM432.965 78.8809C399.599 78.8809 382.916 120.792 382.916 204.613C382.916 283.552 399.273 323.021 431.988 323.021C463.889 323.021 479.84 282.331 479.84 200.951C479.84 119.571 464.215 78.8809 432.965 78.8809Z" fill="#A3CCD9"/></svg>{% endif %}
+<h2 class="font-bold text-center md:text-lg lg:text-xl mt-15">May we assist you in discovering something different?</h2>
+<div class="flex w-full min-w-60 max-w-[500px] relative my-10">
+<input type="text" placeholder="Search" id="search" class="w-full font-bold bg-white p-2 border border-gray-400 outline-none rounded focus:border-gray-900 transition duration-300" />
+<svg class="absolute top-2 right-2 w-7 h-7" width="50" height="50" viewBox="0 0 50 49" fill="none"><path d="M20.0338 38.0676C29.9936 38.0676 38.0677 29.9935 38.0677 20.0338C38.0677 10.074 29.9936 2 20.0338 2C10.0741 2 2 10.074 2 20.0338C2 29.9935 10.0741 38.0676 20.0338 38.0676Z" fill="#A3CCD9" stroke="#383838" stroke-width="4" stroke-linejoin="round"/><path d="M26.0348 12.972C24.4991 11.4363 22.3774 10.4865 20.0339 10.4865C17.6904 10.4865 15.5688 11.4363 14.0331 12.972" stroke="#383838" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.5127 32.5182L48 47" stroke="#383838" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div class="flex flex-col w-full min-w-60 max-w-[500px] gap-5">
+<h4 class="font-bold text-center xl:text-lg">Popular on RX Zee :</h4>
+<div class="grid w-full font-bold text-[#0095FD] max-w-72 sm:grid-cols-2 gap-4 mx-auto whitespace-nowrap">
+    <a href="/drugs">Drugs</a>
+    <a href="/interaction-checker">Interaction Checker</a>
+    <a href="/vitaminsandsupplements">Supplements</a>
+    <a href="/conditions">Conditions</a>
+    <a href="/pill-identifier">Pill Identifier</a>
+    <a href="/wellbeing">Well Being</a>
+</div>
+</div>
+</section>
+<div class="xl:grid-cols-7 xl:grid-cols-8"></div>
+{% endblock %}

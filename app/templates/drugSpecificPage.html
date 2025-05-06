@@ -1,0 +1,49 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+<style>#asgagasz::-webkit-scrollbar{display: none}</style>
+<section class="flex flex-col gap-10">
+<div class="flex flex-col min-h-60 max-h-60 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<h1 class="w-full text-center sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mt-20">{{ drug.name }}</h1>
+</div>
+<div class="grid lg:grid-cols-3 gap-5 lg:gap-3 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pt-10 mb-32">
+<div class="flex col-span-2 flex-col gap-3 overflow-hidden">
+<h2 class="font-bold text-2xl md:text-3xl select-none">{{ drug.name }}</h2>
+<div id="asgagasz" class="w-full text-[#105EDA] 2xl:text-lg select-none whitespace-nowrap overflow-y-hidden overflow-x-scroll">
+<div class="flex w-fit gap-2 text-[#105EDA]">
+{% if drug.uses %}<a href="#{{ id }}uses">Uses |</a>{% endif %}
+{% if drug.side_effects %}<a href="#{{ id }}sideeffects"> Side effects |</a>{% endif %}
+{% if drug.warnings %}<a href="#{{ id }}warnings"> Warnings |</a>{% endif %}
+{% if drug.precautions %}<a href="#{{ id }}precautions"> Precautions |</a>{% endif %}
+{% if drug.interactions %}<a href="#{{ id }}interactions"> Interactions |</a>{% endif %}
+{% if drug.overdose %}<a href="#{{ id }}overdose">Overdose</a>{% endif %}
+{% if faqs %}<a href="#{{ id }}faqs">| FAQS</a>{% endif %}
+{% if drug.images %}<a href="#{{ id }}images">| Images</a>{% endif %}
+</div>
+</div>
+<div class="flex flex-col gap-1">
+{% if drug.pronunciation %}<p class="text-sm md:text-base"><b>Pronunciation:</b> {{ drug.pronunciation }}</p>{% endif %}
+{% if drug.generic_name %}<p class="text-sm md:text-base"><b>Generic name:</b> {% for generic_name in generic_names %}<a href="/drugs/gn/{{ generic_name }}" class="text-[#105EDA] hover:text-[#0000FF] transition duration-300">{{ generic_name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+{% if drug.brand_name %}<p class="text-sm md:text-base"><b>Brandname:</b> {{ drug.brand_name }}</p>{% endif %}
+{% if drug.class_name %}<p class="text-sm md:text-base"><b>Drug Class:</b> {{ drug.class_name }}</p>{% endif %}
+{% if drug.dosage_forms %}<p class="text-sm md:text-base"><b>Dosage Forms:</b> {{ drug.dosage_forms }}</p>{% endif %}
+{% if drug.availability %}<p class="text-sm md:text-base"><b>Availability:</b> {{ drug.availability }}</p>{% endif %}
+<div class="text-sm md:text-base flex items-center gap-2"><p class="text-xs xl:text-sm text-[#686E7F]">Medically reviewed by <a href="{{ drug.author__username }}" target="_blank" class="text-[#0095FD] hover:underline transition duration-300">{{ drug.author__first_name }} {{ drug.author__last_name }}</a>. Last updated on {{ drug.last_updated }}</p></div>
+</div>
+<div id="content" class="flex flex-col">
+{% if drug.uses %}<div id="{{ id }}uses" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl">What is {{ drug.name }}?</h3><p>{{ drug.uses|safe }}</p></div>{% endif %}
+{% if drug.side_effects %}<div id="{{ id }}sideeffects" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl mt-2">{{ drug.name }} Side Effects</h3><p>{{ drug.side_effects|safe }}</p></div>{% endif %}
+{% if drug.warnings %}<div id="{{ id }}warnings" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl">Warnings</h3><p>{{ drug.warnings|safe }}</p></div>{% endif %}
+{% if drug.precautions %}<div id="{{ id }}precautions" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl mt-2">How is {{ drug.name }} administered?</h3><p>{{ drug.precautions|safe }}</p></div>{% endif %}
+{% if drug.interactions %}<div id="{{ id }}interactions" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl mt-2">What other drugs will affect {{ drug.name }}?</h3><p>{{ drug.interactions|safe }}</p></div>{% endif %}
+{% if drug.overdose %}<div id="{{ id }}overdose" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl">Overdose of this medicine</h3><p>{{ drug.overdose|safe }}</p></div>{% endif %}
+{% if faqs %}<div id="{{ id }}faqs" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl mt-2">FAQs {{ drug.name }}?</h3><div id="faq_container" class="flex flex-col gap-4">{% for faq in faqs %}<div id="faq_item" class="border-b border-gray-400 pb-2"><h5 class="flex justify-between items-center font-semibold cursor-pointer">{{ faq.question }} <svg id="show-svg" class="hidden fill-gray-600" width="15px" height="15px" viewBox="0 0 512 512"><path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/></svg><svg id="hidden-svg" class="fill-gray-600" width="15px" height="15px" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></h5><p class="hidden text-sm">{{ faq.answer }}</p></div>{% endfor %}</div></div>{% endif %}
+{% if drug.images %}<div id="{{ id }}images" class="flex flex-col pt-5"><h3 class="font-bold text-xl xl:text-2xl mt-2">Images {{ drug.name }}</h3><p>{{ drug.images|safe }}</p></div>{% endif %}
+</div>
+</div>
+{% include 'components/specificDrugsPageSideWidgets.html' %}
+</div>
+</section>
+<script>document.querySelector("#faq_item").querySelector("p").classList.remove("hidden"); document.querySelector("#faq_item").querySelector("#hidden-svg").classList.add("hidden"); document.querySelector("#faq_item").querySelector("#show-svg").classList.remove("hidden");  document.querySelectorAll("#faq_item").forEach(faq => {faq.addEventListener("click", ()=>{document.querySelectorAll("#faq_item").forEach(element => {if (!element.querySelector("p").classList.contains("hidden") && element.innerHTML !== faq.innerHTML) { element.querySelector("p").classList.add("hidden"); element.querySelector("#show-svg").classList.add("hidden"); element.querySelector("#hidden-svg").classList.remove("hidden")}}); if (faq.querySelector("p").classList.contains("hidden")) { faq.querySelector("p").classList.remove("hidden"); faq.querySelector("#show-svg").classList.remove("hidden"); faq.querySelector("#hidden-svg").classList.add("hidden")}else { faq.querySelector("p").classList.add("hidden"); faq.querySelector("#show-svg").classList.add("hidden"); faq.querySelector("#hidden-svg").classList.remove("hidden")}})})</script>
+{% endblock %}

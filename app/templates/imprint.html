@@ -1,0 +1,46 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+<style>#asgagasz::-webkit-scrollbar{display: none}</style>
+<section class="flex flex-col gap-10">
+<div class="flex flex-col min-h-40 max-h-60 w-full bg-[#A3CCD9] font-bold pt-5 pb-10 select-none px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px]">
+{% include 'components/breadcrumbs.html' %}
+<h1 class="w-full text-center sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mt-20">90 T Pill - yellow round, 9mm</h1>
+</div>
+<div id="content" class="flex flex-col max-w-[1500px] mb-32 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] mx-auto gap-10">
+  <div class="flex flex-col font-bold bg-[#DEEBEF] gap-5 p-2 sm:p-5 lg:p-10 border border-gray-300 rounded-md">
+    <h3 class="text-center">Generic Name: ticagrelor</h3>
+    <h5>Pill with imprint 90 T is Yellow, Round and has been identified as Brilinta 90 mg. It is supplied by AstraZeneca.</h5>
+    <p>Brilinta is used in the treatment of Coronary Artery Disease; Acute Coronary Syndrome; Heart Attack; Cardiovascular Risk Reduction; Ischemic Stroke, Prophylaxis and belongs to the drug class platelet aggregation inhibitors. Risk cannot be ruled out during pregnancy. Brilinta 90 mg is not a controlled substance under the Controlled Substances Act (CSA).</p>
+  </div>
+<div class="flex flex-col justify-center items-center font-bold gap-5">
+    <h3 class="text-lg md:text-xl xl:text-2xl">Medication Images for 90 T</h3>
+    <div class="grid w-fit md:grid-cols-2 gap-5"><img class="min-w-60 w-full max-w-96 select-none" src="{% static 'imprint/1.png' %}" alt="imprint" /><img class="min-w-60 w-full max-w-96 select-none" src="{% static 'imprint/2.png' %}" alt="imprint" /><img class="min-w-60 w-full max-w-96 select-none" src="{% static 'imprint/3.png' %}" alt="imprint" /><img class="min-w-60 w-full max-w-96 select-none" src="{% static 'imprint/4.png' %}" alt="imprint" /></div>
+</div>
+<div class="grid md:grid-cols-2 bg-[#DEEBEF] gap-5 p-2 sm:p-5 lg:p-10">
+    <div class="flex flex-col gap-2">
+        <strong>Brilinta</strong>
+        <strong>Generic Name : ticagrelor</strong>
+        <strong>Imprint : 90 T</strong>
+        <strong>Strength : 90 mg</strong>
+        <strong>Color : Yellow</strong>
+        <strong>Size : 9.00 mm</strong>
+        <strong>Shape : Round</strong>
+        <strong>Availability : Prescription only</strong>
+    </div>
+    <div class="flex flex-col gap-2">
+        <strong>Drug Class : Platelet aggregation inhibitors</strong>
+        <strong>Pregnancy Category : C - Risk cannot be ruled out</strong>
+        <strong>CSA Schedule : Not a controlled drug</strong>
+        <strong>Labeler / Supplier : AstraZeneca</strong>
+        <strong>National Drug Code (NDC) : 00186-0777</strong>
+    </div>
+</div>
+<div class="flex flex-col font-bold bg-[#DEEBEF] gap-5 p-2 sm:p-5 lg:p-10 border border-gray-300 rounded-md">
+    <h3 class="text-center">Inactive Ingredients:</h3>
+    <p>mannitol, calcium phosphate dihydrate dibasic, sodium starch glycolate type A potato, hydroxypropyl cellulose, magnesium stearate, water, hypromelloses, titanium dioxide, magnesium silicate, polyethylene glycol 400, ferric oxide yellow</p>
+    <p>Note: Inactive ingredients may vary.</p>
+</div>
+</div>
+</section>
+{% endblock %}

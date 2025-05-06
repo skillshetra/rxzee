@@ -1,0 +1,47 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 xl:pr-40 xl:pr-40 2xl:pl-[342px] 2xl:pr-72 pb-auto pt-5 select-none">
+    {% include 'components/breadcrumbs.html' %}
+    <h1 class="w-full text-center text-lg sm:text-xl md:text-3xl xl:text-4xl my-10">Contact Rx Zee</h1>
+</div>
+<section class="relative w-[315px] sm:w-96 md:w-[550px] xl:md:w-[800px] 2xl:md:w-[1000px] mx-auto">
+<h3 class="font-bold text-center text-xl md:text-2xl md:text-3xl py-10">Send a request</h3>
+<p class="text-justify">RxZee.com is unable to respond to each and every email that is sent to us because of the volume of emails that we get. You may get answers to frequently asked questions by reading through our frequently asked questions website. In the event that you have particular questions about drugs, we suggest getting in touch with our support community.</p>
+<p class="text-justify pt-5">RxZee.com was developed with the purpose of making it easier to search for information on drugs, such as drug interactions and pill pictures for pharmaceutical items sold in the United States. extra resources on the Internet, institutional or retail pharmacies, university-based drug information centers, poison control centers, and healthcare experts are all excellent places to look for extra information.</p>
+<p class="bg-[#B5D6E0] p-4 my-5" style="box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2)">Note: RxZee.com is not an internet drugstore and does not sell any over-the-counter or prescription drugs. RxZee.com does not give medical advice, help with diagnosis, or suggest treatments. Talk to your doctor or nurse.</p>
+<form method="post" enctype="multipart/form-data" class="flex flex-col gap-5 p-5 md:p-10">
+{% csrf_token %}
+{% if form.non_field_errors %}<div class="mb-4"><div class="text-[#ff0000] bg-[#ff000020] p-3 rounded">{% for error in form.non_field_errors %}<p>{{ error }}</p>{% endfor %}</div></div>{% endif %}
+<div class="flex flex-col gap-1">
+<label for="id_subject" class="font-bold">Subject<span class="text-xs text-[#ff0000]"> *</span></label>
+{{ form.subject }}
+{% if form.subject.errors %}<div class="text-[#ff0000] bg-[#ff000020] text-xs mt-1 p-2 rounded">{% for error in form.subject.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+</div>
+<div class="flex flex-col gap-1">
+<label for="id_fullname" class="font-bold">Full Name<span class="text-xs text-[#ff0000]"> *</span></label>
+{{ form.fullname }}
+{% if form.fullname.errors %}<div class="text-[#ff0000] bg-[#ff000020] text-xs mt-1 p-2 rounded">{% for error in form.fullname.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+</div>
+<div class="flex flex-col gap-1">
+<label for="id_email" class="font-bold">Email Address<span class="text-xs text-[#ff0000]"> *</span></label>
+{{ form.email }}
+{% if form.email.errors %}<div class="text-[#ff0000] bg-[#ff000020] text-xs mt-1 p-2 rounded">{% for error in form.email.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+</div>
+<div class="flex flex-col gap-1">
+<label for="id_message" class="font-bold">Message</label>
+{{ form.message }}
+{% if form.message.errors %}<div class="text-[#ff0000] bg-[#ff000020] text-xs mt-1 p-2 rounded">{% for error in form.message.errors %}<p>{{ error }}</p>{% endfor %}</div>{% endif %}
+</div>
+<div class="flex justify-end gap-2">
+<input type="checkbox" id="terms" required />
+<label for="terms" class="text-xs">I accept RxZee.com's <a href="/terms-of-use" class="text-[#0095FD]">Terms of Use</a> and <a href="/privacy-policy" class="text-[#0095FD]">Privacy Policy</a></label>
+</div>
+{% if success %}<p class="text-green-700 bg-green-200 text-sm p-2 rounded">Your message has been received!</p>{% endif %}
+<div class="grid sm:grid-cols-2 gap-5">
+<label for="file_upload" class="flex justify-center items-center font-semibold border border-gray-300 cursor-pointer">Add files or drop files here<input type="file" name="file_upload" id="file_upload" class="hidden" multiple></label>
+<button class="font-semibold text-xl bg-[#A3CCD9] p-2 border border-gray-400">Submit</button>
+</div>
+</form>
+</section>
+{% endblock %}

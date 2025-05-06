@@ -1,0 +1,42 @@
+{% extends 'components/index.html' %}
+{% block content %}
+{% load static %}
+<style>#asgagasz::-webkit-scrollbar{display: none}</style>
+<section class="flex flex-col gap-10">
+<div class="flex flex-col min-h-60 max-h-60 lg:min-h-72 lg:max-h-72 w-full bg-[#A3CCD9] font-bold px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pb-auto pt-5 select-none">
+{% include 'components/breadcrumbs.html' %}
+<h1 class="w-full text-center sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mt-20">{{ vitaminsAndSupplement.name }}</h1>
+</div>
+<div class="grid lg:grid-cols-3 gap-5 lg:gap-3 px-4 sm:px-12 md:pl-20 lg:pl-32 lg:pr-16 xl:pl-64 2xl:pr-60 2xl:pl-[342px] pt-10 mb-32">
+<div class="flex col-span-2 flex-col gap-5 overflow-hidden">
+<h1 class="font-bold text-2xl md:text-3xl select-none">{{ vitaminsAndSupplement.name }}</h1>
+<div id="asgagasz" class="w-full text-[#105EDA] 2xl:text-lg select-none whitespace-nowrap overflow-y-hidden overflow-x-scroll">
+<div class="flex w-fit gap-2 text-[#105EDA]">
+{% if vitaminsAndSupplement.overview %}<a href="#{{ id }}overview{{ id }}"> Overview |</a>{% endif %}
+{% if vitaminsAndSupplement.uses %}<a href="#{{ id }}uses{{ id }}">Uses |</a>{% endif %}
+{% if vitaminsAndSupplement.side_effects %}<a href="#{{ id }}sideeffects{{ id }}"> Side effects |</a>{% endif %}
+{% if vitaminsAndSupplement.precautions %}<a href="#{{ id }}precautions{{ id }}"> Precautions |</a>{% endif %}
+{% if vitaminsAndSupplement.interactions %}<a href="#{{ id }}interactions{{ id }}"> Interactions |</a>{% endif %}
+{% if vitaminsAndSupplement.dosing %}<a href="#{{ id }}dosing{{ id }}"> Dosing</a>{% endif %}
+{% if faqs %}<a href="#faqs">| FAQS</a>{% endif %}
+</div>
+</div>
+<div>
+{% if vitaminsAndSupplement.other_names %}<p class="text-sm md:text-base"><b>Other Names:</b> {{ vitaminsAndSupplement.other_names }}</p>{% endif %}
+<div class="text-sm md:text-base flex items-center gap-2"> <p class="text-xs xl:text-sm text-[#686E7F]">Medically reviewed by RxZee. Last updated on {{ vitaminsAndSupplement.last_updated }}</p></div>
+</div>
+<div id="content" class="flex flex-col gap-8 pt-10">
+    {% if vitaminsAndSupplement.overview %}<div id="{{ id }}overview{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl">Overview</h3><p>{{ vitaminsAndSupplement.overview|safe }}</p></div>{% endif %}
+    {% if vitaminsAndSupplement.uses %}<div id="{{ id }}uses{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl">What is {{ vitaminsAndSupplement.name }}?</h3><p>{{ vitaminsAndSupplement.uses|safe }}</p></div>{% endif %}
+    {% if vitaminsAndSupplement.side_effects %}<div id="{{ id }}sideeffects{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl mt-2">{{ vitaminsAndSupplement.name }} Side Effects</h3><p>{{ vitaminsAndSupplement.side_effects|safe }}</p></div>{% endif %}
+    {% if vitaminsAndSupplement.precautions %}<div id="{{ id }}precautions{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl">Before taking this medicine</h3><p>{{ vitaminsAndSupplement.precautions|safe }}</p></div>{% endif %}
+    {% if vitaminsAndSupplement.interactions %}<div id="{{ id }}interactions{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl mt-2">What other vitamins will affect {{ vitaminsAndSupplement.name }}?</h3><p>{{ vitaminsAndSupplement.interactions|safe }}</p></div>{% endif %}
+    {% if vitaminsAndSupplement.dosing %}<div id="{{ id }}dosing{{ id }}" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl mt-2">How is {{ vitaminsAndSupplement.name }} administered?</h3><p>{{ vitaminsAndSupplement.dosing|safe }}</p></div>{% endif %}
+    {% if faqs %}<div id="faqs" class="flex flex-col gap-3 pt-10"><h3 class="font-bold text-xl xl:text-2xl mt-2">FAQs {{ vitaminsAndSupplement.name }}?</h3><div id="faq_container" class="flex flex-col gap-4">{% for faq in faqs %}<div id="faq_item" class="border-b border-gray-400 pb-2"><h5 class="flex justify-between items-center font-semibold cursor-pointer">{{ faq.question }} <svg id="show-svg" class="hidden fill-gray-600" width="15px" height="15px" viewBox="0 0 512 512"><path d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z"/></svg><svg id="hidden-svg" class="fill-gray-600" width="15px" height="15px" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></h5><p class="hidden text-sm">{{ faq.answer }}</p></div>{% endfor %}</div></div>{% endif %}
+</div>
+</div>
+{% include 'components/specificDrugsPageSideWidgets.html' %}
+</div>
+</section>
+<script>document.querySelector("#faq_item").querySelector("p").classList.remove("hidden"); document.querySelector("#faq_item").querySelector("#hidden-svg").classList.add("hidden"); document.querySelector("#faq_item").querySelector("#show-svg").classList.remove("hidden");  document.querySelectorAll("#faq_item").forEach(faq => {faq.addEventListener("click", ()=>{document.querySelectorAll("#faq_item").forEach(element => {if (!element.querySelector("p").classList.contains("hidden") && element.innerHTML !== faq.innerHTML) { element.querySelector("p").classList.add("hidden"); element.querySelector("#show-svg").classList.add("hidden"); element.querySelector("#hidden-svg").classList.remove("hidden")}}); if (faq.querySelector("p").classList.contains("hidden")) { faq.querySelector("p").classList.remove("hidden"); faq.querySelector("#show-svg").classList.remove("hidden"); faq.querySelector("#hidden-svg").classList.add("hidden")}else { faq.querySelector("p").classList.add("hidden"); faq.querySelector("#show-svg").classList.add("hidden"); faq.querySelector("#hidden-svg").classList.remove("hidden")}})})</script>
+{% endblock %}
